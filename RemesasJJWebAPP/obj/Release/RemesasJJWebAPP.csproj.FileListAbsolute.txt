@@ -43,3 +43,47 @@ c:\Users\user\Documents\Visual Studio 2015\Projects\RemesasJJWebAPP\RemesasJJWeb
 C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\SendGrid.dll
 C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\SendGrid.pdb
 C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\SendGrid.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\ApplicationInsights.config
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\RemesasJJWebAPP.dll.config
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\RemesasJJWebAPP.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\RemesasJJWebAPP.pdb
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\EntityFramework.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\EntityFramework.SqlServer.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.Agent.Intercept.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.DependencyCollector.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.Web.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.WindowsServer.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.ApplicationInsights.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.Web.Infrastructure.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\MySql.Data.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\MySql.Data.Entity.EF6.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Newtonsoft.Json.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\SendGrid.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Helpers.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Mvc.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Razor.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Webpages.Deployment.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Webpages.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Webpages.Razor.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\EntityFramework.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\EntityFramework.SqlServer.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.DependencyCollector.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.Web.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.AI.WindowsServer.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Microsoft.ApplicationInsights.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\Newtonsoft.Json.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\RemesasJJ.pdb
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\SendGrid.pdb
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\SendGrid.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Razor.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Webpages.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Webpages.Deployment.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Webpages.Razor.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Helpers.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Mvc.xml
+C:\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.csprojResolveAssemblyReference.cache
+C:\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.dll
+C:\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.pdb

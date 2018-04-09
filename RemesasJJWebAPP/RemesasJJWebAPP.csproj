@@ -278,6 +278,7 @@
     <Compile Include="Controllers\CambiosController.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RemesasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -326,6 +327,7 @@
     <Content Include="Views\Form\Index.cshtml" />
     <Content Include="Views\Form\message.cshtml" />
     <Content Include="Views\Form\Error.cshtml" />
+    <Content Include="Views\Remesas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

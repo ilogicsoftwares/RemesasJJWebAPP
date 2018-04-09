@@ -127,7 +127,7 @@
                 $scope.ImgError = data.data.message;
             }
         }, function () {
-          
+            $scope.ImgError = "Error al subir el Archivo";
         })
 
     }
@@ -156,7 +156,15 @@
         } 
 
     }
-  
+}).controller("adminRemesasController", function ($scope, $sce, $location, Request, Notify, $state) {
+
+    $scope.loading = true;
+    Request.make("POST", "/remesas/getall/").then(function (data) {
+        $scope.remesas = data;
+    });
+
+
+
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {
 
     $scope.cambio = cambio;

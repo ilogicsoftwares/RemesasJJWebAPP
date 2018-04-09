@@ -107,8 +107,8 @@ namespace RemesasJJWebAPP.Controllers
                                "<p>Cedula:</p>" + "<strong>" + remesa.cedulaBenef + "</strong>" +
                                "<p>Banco:</p>" + "<strong>" + bacon.nombre + "</strong>" +
                                "<p>Cuenta:</p>" + "<strong>" + remesa.cuentaBenef + "</strong>" +
-                               "<p>Monto:</p>" + "<strong>" + remesa.montoDeposito.ToString("{0:N}") + "</strong>" +
-                               "<p>Total Enviado:</p>" + "<strong>" + remesa.montoDestino.ToString("{0:N}") + "</strong>" +
+                               "<p>Monto:</p>" + "<strong>" + string.Format ("{0:N}",remesa.montoDeposito) + "</strong>" +
+                               "<p>Total Enviado:</p>" + "<strong>" + string.Format("{0:N}", remesa.montoDestino)  + "</strong>" +
 
 
                                "</div>";
