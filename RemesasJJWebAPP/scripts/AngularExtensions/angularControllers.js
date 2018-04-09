@@ -1,6 +1,10 @@
 ﻿angular.module("RemesasApp", ["angularServices","angularConfig"])
  .controller("HomeController", function ($scope, $sce, $location,Request, Notify,$state) {
+     $scope.user = { nombre: "", codigo: "" };
      $state.go("Form");
+     $scope.createNew = function () {
+         return angular.copy(remesax);
+     }
      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
      $scope.titulo = "Angular Ready"
      $scope.remesa = $scope.createNew();
@@ -18,9 +22,7 @@
          }
      }
      
-     $scope.createNew = function () {
-         return angular.copy(remesax);
-     }
+    
      $scope.option = 0;
      $scope.monto = 0.00;
      $scope.total=0.00
@@ -62,30 +64,43 @@
 }).controller("adminHomeController", function ($scope, $sce, $location, Request, Notify, $state) {
 
 }).controller("messageController", function ($scope, $sce, $location, Request, Notify, $state) {
-
+   
 
 }).controller("adminController", function ($scope, $sce, $location, Request, Notify, $state) {
 
     $state.go("AdminHome");
-}).controller("FormController", function ($scope, $sce, $location, Request, Notify, $state,$http) {
-  
+}).controller("FormController", function ($scope, $sce, $location, Request, Notify, $state,$http,bancos) {
+    $scope.remesa = $scope.createNew();
+    $scope.Botton = true;
+
     $scope.showFile = false;
     $scope.newFileName = "";
     $scope.loading = false;
+    $scope.loadin2 = false;
     $scope.filejpg = null;
     $scope.depoTran = false;
-    
+    $scope.bancos = bancos;
     $scope.enviarRemesa = function (state) {
+      
         if (!$scope.Form1.$valid) {
             return;
         }
+        $scope.Botton = false;
+        $scope.loading2 = true;
         state.preventDefault();
 
         Request.make("POST", "/Form/Enviar", { remesa: $scope.remesa, file: $scope.newFileName}).then(function (data) {
             if (data.estatus) {
-                $scope.remesa = $scope.createNew();
+                $scope.user.nombre = data.nombre;
+                $scope.user.codigo = data.codigo;
+                var elmnt = document.getElementById("sHeader");
+                elmnt.scrollIntoView();
                 $state.go("Message");
+
+            } else {
+                $state.go("Error");
             }
+
 
         })
     }
@@ -101,9 +116,16 @@
             transformRequest: angular.identity,
             headers: { 'Content-Type': undefined }
         }).then(function (data) {
-            $scope.loading = false;
-            $scope.newFileName = data.data.filename;
-            $scope.showFile = true;
+            if (data.data.estatus) {
+                $scope.loading = false;
+                $scope.newFileName = data.data.filename;
+                $scope.ImgError = "";
+                $scope.showFile = true;
+            } else {
+                $scope.loading = false;
+                $scope.showFile = false;
+                $scope.ImgError = data.data.message;
+            }
         }, function () {
           
         })

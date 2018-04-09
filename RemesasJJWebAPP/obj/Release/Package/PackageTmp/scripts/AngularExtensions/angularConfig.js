@@ -1,4 +1,4 @@
-﻿angular.module("angularConfig", ['ui.router'])
+﻿angular.module("angularConfig", ['ui.router','angularServices'])
  .config(['$stateProvider', function ($stateProvider) {
   
      $stateProvider
@@ -29,6 +29,28 @@
           url: "/home",
           templateUrl: "/form/index",
           controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+                  return Request.make("POST","/form/Bancos/");
+              }
+          }
+
+      }).state({
+          name: "Message",
+          url: "/Message",
+          templateUrl: "/form/message/",
+          controller: "messageController",
+          resolve: {
+              clientes: function () {
+                  return 1;
+              }
+          }
+
+      }).state({
+          name: "Error",
+          url: "/Error",
+          templateUrl: "/form/error/",
+          controller: "messageController",
           resolve: {
               clientes: function () {
                   return 1;

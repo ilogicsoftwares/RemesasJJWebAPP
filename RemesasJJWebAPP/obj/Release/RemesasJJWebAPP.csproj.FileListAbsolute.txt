@@ -40,3 +40,6 @@ c:\Users\user\Documents\Visual Studio 2015\Projects\RemesasJJWebAPP\RemesasJJWeb
 c:\Users\user\Documents\Visual Studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\MySql.Data.dll
 c:\Users\user\Documents\Visual Studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\MySql.Data.Entity.EF6.dll
 c:\Users\user\Documents\Visual Studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\EntityFramework.SqlServer.xml
+C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\SendGrid.dll
+C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\SendGrid.pdb
+C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\SendGrid.xml

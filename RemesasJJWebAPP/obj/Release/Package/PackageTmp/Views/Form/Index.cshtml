@@ -13,11 +13,11 @@
         <h2>Datos del Benificiario</h2>
         <p>
             <label>Nombre Completo</label>
-            <input class="w3-input w3-animate-input" type="text" ng-model="remesa.nombreBenef" required>
+            <input id="nombreComp" class="w3-input w3-animate-input" type="text" ng-model="remesa.nombreBenef" required>
         </p>
         <p>
             <label>Cedula</label>
-            <input class="w3-input w3-animate-input" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="remesa.cedulaBenef" required>
+            <input id="cedula" class="w3-input w3-animate-input" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="remesa.cedulaBenef" required>
         </p>
         <p id="1" class="form-group">
             <label>Tipo de Cedula: </label>
@@ -30,8 +30,8 @@
         </p>
         <p>
             <h2>Banco del Beneficiario </h2>
-            <select class="w3-select" name="option" ng-model="remesa.bancoBenef">
-                <option value="" disabled selected>Choose your option</option>
+            <select class="w3-select" name="option" ng-model="remesa.bancoBenef" ng-options="item.id as item.nombre for item in bancos track by item.id">
+                <option value="" disabled selected>Selecciona un Banco</option>
                 <option value="1">Banesco Banco Universal</option>
                 <option value="2">Banco de Venezuela</option>
                 <option value="3">Banco Provincial</option>
@@ -61,10 +61,11 @@
             <p id="4" class="form-group">
                 <h2>Adjuntar Voucher</h2><br />
                 <input  class="w3-input" id="file" type="file"  value="male" ng-model="filejpg" onchange="angular.element(this).scope().add()">
+                <p style="color:red">{{ImgError}}</p>
                 <div  class="loader" ng-show="loading"></div>
-                <img id="fileimage" class="img-responsive" width="35" ng-show="showFile" src="~/uploads/{{newFileName}}"/>
+                <img id="fileimage" class="img-responsive" width="35" ng-show="showFile" src="~/Content/Uploads/{{newFileName}}"/>
                 <label>Fecha</label>
-                <input id="fecha" class="w3-input" type="date" name="fecha" value="{{date}}">
+                <input id="fecha" class="w3-input" type="date" name="fecha" ng-model="remesa.fecha">
                 <label>Número de Transacción</label>
                 <input id="nunTrans" class="w3-input" type="text" name="nunTrans">
             </p>
@@ -82,15 +83,15 @@
         <p id="4" class="form-group">
             <h2>Datos del Depositante:</h2><br />
             <label>Nombre del Depositante</label>
-            <input id="male" class="w3-input" type="text"  ng-model="remesa.nombreCliente"  required >
+            <input id="nombreDep" class="w3-input" type="text"  ng-model="remesa.nombreCliente"  required >
             <label>Email del Depositante</label>
-            <input id="male" class="w3-input" type="email" ng-model="remesa.correoCliente" required>
+            <input id="emailDep" class="w3-input" type="email" ng-model="remesa.correoCliente" required>
             <label>Teléfono del Depositante</label>
-            <input id="male" class="w3-input" type="text" ng-model="remesa.telefonoCliente" required>
+            <input id="telefonoDép" class="w3-input" type="text" ng-model="remesa.telefonoCliente" required>
         </p>
         <p id="4" class="form-group">
-           
-            <input id="male" class="btn btn-lg pull-right" type="submit" ng-click="enviarRemesa($event)" value="Enviar">
+            <div class="loader pull-right" ng-show="loading2"></div>
+            <input id="male" ng-show="Botton" ng-disabled="loading2" class="btn btn-lg pull-right" type="submit" ng-click="enviarRemesa($event)" value="Enviar">
         </p>
     </form>
     <script>
