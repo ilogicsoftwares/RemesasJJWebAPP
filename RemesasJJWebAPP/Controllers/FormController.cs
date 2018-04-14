@@ -18,8 +18,8 @@ namespace RemesasJJWebAPP.Controllers
         // GET: Form
         Remesa remex = new Remesa();
         Bancos bancos = new Bancos();
+        RemesasJJ.Logics.SendGrid sendMail = new RemesasJJ.Logics.SendGrid();
 
-        
         public ActionResult Index()
         {
             return View();
@@ -128,7 +128,7 @@ namespace RemesasJJWebAPP.Controllers
         public async Task<JsonResult> SendMail(string subjectx, string fromF, string fromName, string toF, string toName, string content)
         {
             //StreamReader reader = new StreamReader("~/Content/m.txt");
-            var apiKey = "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";
+            var apiKey = sendMail.GetKey();
             var client = new SendGridClient(apiKey);
             var from = new EmailAddress(fromF, fromName);
 

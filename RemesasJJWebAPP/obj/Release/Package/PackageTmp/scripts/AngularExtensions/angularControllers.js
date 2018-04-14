@@ -127,6 +127,8 @@
                 $scope.ImgError = data.data.message;
             }
         }, function () {
+            $scope.loading = false;
+            $scope.showFile = false;
             $scope.ImgError = "Error al subir el Archivo";
         })
 
