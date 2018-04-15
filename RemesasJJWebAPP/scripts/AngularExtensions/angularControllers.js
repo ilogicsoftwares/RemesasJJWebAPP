@@ -158,18 +158,48 @@
         } 
 
     }
-}).controller("adminRemesasController", function ($scope, $sce, $location, Request, Notify, $state) {
 
-    $scope.loading = true;
+}).controller("adminRemesaController", function ($scope, $sce, $location, Request, Notify, $state) {
+    $scope.data = [];
+    $scope.Open = function (event) {
+        console.log(event);
+    }
     Request.make("POST", "/remesas/getall/").then(function (data) {
-        $scope.remesas = data;
-    });
 
+        var columns = [
+        { title: "ID", data: 'id',width:'5%' },
+        { title: "Fecha", data: 'fecha', type: 'date', width: '5%' },
+        { title: "Cliente", data: 'nombreCliente', width: '20%' },
+        { title: "Monto Deposito", data: 'montoDeposito', width: '5%' },
+        { title: "Beneficiario", data: 'nombreBenef', width: '20%' },
+        { title: "Cedula", data: 'cedulaBenef', width: '10%' },
+        { title: "Total Envio", data: 'montoDestino', width: '10%' },
+        { title: "Numero de Cuenta", data: 'cuentaBenef', width: '20%' },
+        { title: "Banco", data: 'bancoBenef', width: '5%' },
+        { title: "Estatus", data: 'Status', width: '5%', defaultContent: '<a ui-sref="Message" ng-click="Open($event)">ilink</a>' }
 
+        ];
+
+     
+        jQuery('#tablex').DataTable({
+            data: data,
+            columns: columns
+        });
+    })
+   
+    
+   
+   
+   
 
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {
 
-    $scope.cambio = cambio;
+
+    function NewCambio() {
+        return angular.copy(cambio);
+    }
+
+    $scope.cambio = NewCambio();
     $scope.Enviar = function (event) {
         event.preventDefault();
         if (!$scope.form1.$valid) {
@@ -180,7 +210,7 @@
 
             if (data.estatus) {
                 alert("Cambio Actualizado");
-                
+                $scope.cambio = NewCambio();
             } else {
                 alert("Error al Actualizar, Consulte al Administrador");
             }

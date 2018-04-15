@@ -84,20 +84,7 @@ namespace RemesasJJWebAPP.Controllers
         }
 
         // POST: Admin/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
 
         // GET: Admin/Delete/5
         public ActionResult Delete(int id)

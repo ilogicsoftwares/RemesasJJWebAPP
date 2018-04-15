@@ -20,10 +20,19 @@
           controller: "adminCambioController",
           resolve: {
               clientes: function () {
-                  return 1;
+                 
               }
           }
-
+      }).state({
+          name: "ActRemesa",
+          url: "/remesas/",
+          templateUrl: "/remesas/index",
+          controller: "adminRemesaController",
+          resolve: {
+              clientes: function () {
+                
+              }
+          }
       }).state({
           name: "Form",
           url: "/home",

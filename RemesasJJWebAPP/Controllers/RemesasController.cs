@@ -22,7 +22,22 @@ namespace RemesasJJWebAPP.Controllers
         public JsonResult GetAll()
         {
              var remesas = remesax.GetAll();
-             return Json(remesas);
+            var remex = remesas.Select(x => new {
+                x.id,
+                fecha = x.fecha.Value.ToShortDateString(),
+                x.nombreCliente,
+                montoDeposito = String.Format("{0:C}", x.montoDeposito),
+                x.nombreBenef,
+                x.cedulaBenef,
+                montoDestino = "Bs." + String.Format("{0:N}", x.montoDestino),
+                x.cuentaBenef,
+                x.bancos.nombre,
+                estatus = x.estatus1.estatus1
+                
+                         
+
+            });
+             return Json(remex);
         }
 
         // GET: Remesas/Create
