@@ -65,6 +65,37 @@ function (response) { // optional
         sucess: sucess
 
     }
+}]).factory("Modals", ['$window', '$http', '$q', 'Request', function ($window, $http, $q, Request) {
+
+    var showModal = function (id) {
+        var BoolShow = true;
+        var dis = "block";
+        if (!BoolShow) {
+            dis = "none"
+        }
+        document.getElementById(id).style.display = dis;
+
+    }
+    var openView = function (id, view, inscope) {
+        inscope = view;
+        modalShow(id);
+    }
+    var closeModal = function (id) {
+        var BoolShow = false;
+        var dis = "block";
+        if (!BoolShow) {
+            dis = "none"
+        }
+        document.getElementById(id).style.display = dis;
+
+    }
+
+    return {
+        showModal: showModal,
+        closeModal: closeModal,
+        openView: openView
+    }
+
 }])
 
 

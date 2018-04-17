@@ -20,10 +20,19 @@
           controller: "adminCambioController",
           resolve: {
               clientes: function () {
-                  return 1;
+                  $("#wrapper").toggleClass("toggled");
               }
           }
-
+      }).state({
+          name: "ActRemesa",
+          url: "/remesas/",
+          templateUrl: "/remesas/index",
+          controller: "adminRemesaController",
+          resolve: {
+              clientes: function () {
+                  $("#wrapper").toggleClass("toggled");
+              }
+          }
       }).state({
           name: "Form",
           url: "/home",

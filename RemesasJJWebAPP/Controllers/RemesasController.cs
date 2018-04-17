@@ -31,8 +31,10 @@ namespace RemesasJJWebAPP.Controllers
                 x.cedulaBenef,
                 montoDestino = "Bs." + String.Format("{0:N}", x.montoDestino),
                 x.cuentaBenef,
-                x.bancos.nombre,
-                estatus = x.estatus1.estatus1
+                banco = x.bancos.nombre,
+                estatus = x.estatus1.estatus1,
+                img=x.file,
+                tipo=x.remesatype1.descripcion
                 
                          
 

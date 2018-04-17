@@ -1,4 +1,4 @@
-﻿angular.module("RemesasApp", ["angularServices","angularConfig"])
+﻿angular.module("RemesasApp", ["angularServices", "angularConfig", "angularUtils.directives.dirPagination"])
  .controller("HomeController", function ($scope, $sce, $location,Request, Notify,$state) {
      $scope.user = { nombre: "", codigo: "" };
      $state.go("Form");
@@ -66,9 +66,15 @@
 }).controller("messageController", function ($scope, $sce, $location, Request, Notify, $state) {
    
 
-}).controller("adminController", function ($scope, $sce, $location, Request, Notify, $state) {
+}).controller("adminController", function ($scope, $sce, $location, Request, Notify, $state,Modals) {
 
     $state.go("AdminHome");
+    $scope.show = function (id) {
+        Modals.showModal(id);
+    }
+    $scope.close = function (id) {
+        Modals.closeModal(id);
+    }
 }).controller("FormController", function ($scope, $sce, $location, Request, Notify, $state,$http,bancos) {
     $scope.remesa = $scope.createNew();
     $scope.Botton = true;
@@ -159,38 +165,32 @@
 
     }
 
-}).controller("adminRemesaController", function ($scope, $sce, $location, Request, Notify, $state) {
-    $scope.data = [];
+}).controller("adminRemesaController", function ($scope, $sce, $location, Request, Notify, $state,Modals,$filter) {
+    var datax = { remesas: [] };
+    $scope.ActiveRemesa = null;
     $scope.Open = function (event) {
         console.log(event);
     }
-    Request.make("POST", "/remesas/getall/").then(function (data) {
 
-        var columns = [
-        { title: "ID", data: 'id',width:'5%' },
-        { title: "Fecha", data: 'fecha', type: 'date', width: '5%' },
-        { title: "Cliente", data: 'nombreCliente', width: '20%' },
-        { title: "Monto Deposito", data: 'montoDeposito', width: '5%' },
-        { title: "Beneficiario", data: 'nombreBenef', width: '20%' },
-        { title: "Cedula", data: 'cedulaBenef', width: '10%' },
-        { title: "Total Envio", data: 'montoDestino', width: '10%' },
-        { title: "Numero de Cuenta", data: 'cuentaBenef', width: '20%' },
-        { title: "Banco", data: 'bancoBenef', width: '5%' },
-        { title: "Estatus", data: 'Status', width: '5%', defaultContent: '<a ui-sref="Message" ng-click="Open($event)">ilink</a>' }
-
-        ];
-
+    $scope.ProcRemesa = function (remesa) {
+         
+        $scope.ActiveRemesa = remesa;
      
-        jQuery('#tablex').DataTable({
-            data: data,
-            columns: columns
-        });
+        Modals.showModal("id01");
+    }
+
+    $scope.filtrar = function (param) {
+
+         $scope.remesasx = $filter("filter")(datax.remesas, param);
+    }
+   
+    $scope.$watch('estatus', function (estatus) {
+        $scope.filtrar(estatus);
+    });
+    Request.make("POST", "/remesas/getall/").then(function (data) {
+        datax.remesas = data;
+        $scope.remesasx = data;
     })
-   
-    
-   
-   
-   
 
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {
 

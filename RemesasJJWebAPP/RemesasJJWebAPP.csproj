@@ -146,6 +146,8 @@
     <Content Include="Content\m.txt" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\verti.png" />
+    <Content Include="Content\w3-theme-blue.css" />
+    <Content Include="Content\w3.css" />
     <Content Include="Global.asax" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -184,6 +186,7 @@
     <Content Include="scripts\AngularExtensions\angularDirectives.js" />
     <Content Include="scripts\AngularExtensions\angularFilters.js" />
     <Content Include="scripts\AngularExtensions\angularServices.js" />
+    <Content Include="scripts\AngularExtensions\dirPagination.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />

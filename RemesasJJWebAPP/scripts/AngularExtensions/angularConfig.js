@@ -20,7 +20,7 @@
           controller: "adminCambioController",
           resolve: {
               clientes: function () {
-                 
+                  $("#wrapper").toggleClass("toggled");
               }
           }
       }).state({
@@ -30,7 +30,7 @@
           controller: "adminRemesaController",
           resolve: {
               clientes: function () {
-                
+                  $("#wrapper").toggleClass("toggled");
               }
           }
       }).state({

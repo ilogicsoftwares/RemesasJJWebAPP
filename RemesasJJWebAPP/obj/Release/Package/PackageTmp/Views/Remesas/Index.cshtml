@@ -3,16 +3,109 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
+<div style="display:grid">
    
-</head>
-<body>
-    <div>
-         
+     <div class="form-group row">
+         <div class="col-sm-6">
+             <div class="input-group">
+                 <label for="inputFilter" class="col-form-label">Buscar:</label>
+                 <input class="form-control" type="text" ng-model="filtro" id="inputFilter" />
+                
+             </div>
+           </div>
+         <div class="col-sm-6" style="margin-top:28px;">
+             <input type="button" class="btn btn-default btn-sm pull-right" ng-click="" value="+" style="font-weight:bold;font-size:medium" title="Nueva Remesa"/>
+             <div class="form-group pull-right" style="margin-right:10px;margin-top:5px">
+                 <label class="radio-inline"><input type="radio" ng-model="estatus" value="Recibida" name="optradio">Recibidas</label>
+                 <label class="radio-inline"><input type="radio" ng-model="estatus" value="Procesada" name="optradio">Procesadas</label>
+                 <label class="radio-inline"><input type="radio" ng-model="estatus" value="Anulada" name="optradio">Anuladas</label>
+             </div>
+            </div>
     </div>
-</body>
-</html>
+
+
+    <div class="" id="barraInferior" style="height:600px;overflow-y:auto">
+
+        <table class="table table-striped table-bordered" style="font-size:small">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Monto Deposito</th>
+                    <th>Beneficiario</th>
+                    <th>Cedula</th>
+                    <th>Total Envio</th>
+                    <th>Numero de Cuenta</th>
+                    <th>Banco</th>
+                    <th>Estatus</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr dir-paginate="remesa in remesasx  | filter:filtro | itemsPerPage:20">
+
+
+                    <td><a href="">{{remesa.id}}</a></td>
+                    <td>{{remesa.fecha}}</td>
+                    <td>{{remesa.nombreCliente}}</td>
+                    <td class="text-right">{{remesa.montoDeposito}}</td>
+                    <td>{{remesa.nombreBenef}}</td>
+                    <td>{{remesa.cedulaBenef}}</td>
+                    <td>{{remesa.montoDestino}}</td>
+                    <td>{{remesa.cuentaBenef}}</td>
+                    <td>{{remesa.banco}}</td>
+                    <td><a ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <dir-pagination-controls class="pull-right"></dir-pagination-controls>
+</div>
+<div id="id01" class="w3-modal">
+    <div class="w3-modal-content w3-container" style="width:800px">
+
+        <div class="w3-border-bottom">
+            <span ng-click="close('id01')" class="w3-button w3-display-topright">&times;</span>
+            <h3> Procesar Remesa</h3>
+
+        </div>
+
+        <div class="w3-panel" >
+                 <div class="col-sm-4">
+                    <a class="img-responsive" href="" ng-click="show('id02')"><img width="200" src="~/Content/Uploads/{{ActiveRemesa.img}}" /></a>
+                </div>
+                <div class="col-sm-8">
+                    <div class="form-inline">
+                        ID Deposito<input class="form-control" type="text" />
+                    </div>
+                    <div class="form-inline">
+                        ID Transferencia<input class="form-control" type="text" />
+                    </div>
+                    <div class="form-inline">
+                       Banco Deposito<select class="form-control"></select>
+                    </div>
+                    <div class="form-inline">
+                       Cuenta<select class="form-control"></select>
+                    </div>
+                </div>
+          
+        </div>
+        <footer>
+
+            <button ng-click="setRemesa(ActiveRemesa)" class="w3-btn w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
+        </footer>
+    </div>
+</div>
+
+<div id="id02" class="w3-modal">
+    <div class="w3-modal-content w3-container" style="width:800px">
+        <div class="w3-border-bottom">
+            <span ng-click="close('id02')" class="w3-button w3-display-topright">&times;</span>
+            <h3>Procesar Remesa</h3>
+
+        </div>
+            <img class="img-responsive" src="~/Content/Uploads/{{ActiveRemesa.img}}" /> 
+     </div>
+
+</div>

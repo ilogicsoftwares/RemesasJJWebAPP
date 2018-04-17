@@ -1,4 +1,4 @@
-﻿angular.module("RemesasApp", ["angularServices","angularConfig"])
+﻿angular.module("RemesasApp", ["angularServices", "angularConfig", "angularUtils.directives.dirPagination"])
  .controller("HomeController", function ($scope, $sce, $location,Request, Notify,$state) {
      $scope.user = { nombre: "", codigo: "" };
      $state.go("Form");
@@ -66,9 +66,15 @@
 }).controller("messageController", function ($scope, $sce, $location, Request, Notify, $state) {
    
 
-}).controller("adminController", function ($scope, $sce, $location, Request, Notify, $state) {
+}).controller("adminController", function ($scope, $sce, $location, Request, Notify, $state,Modals) {
 
     $state.go("AdminHome");
+    $scope.show = function (id) {
+        Modals.showModal(id);
+    }
+    $scope.close = function (id) {
+        Modals.closeModal(id);
+    }
 }).controller("FormController", function ($scope, $sce, $location, Request, Notify, $state,$http,bancos) {
     $scope.remesa = $scope.createNew();
     $scope.Botton = true;
@@ -158,18 +164,42 @@
         } 
 
     }
-}).controller("adminRemesasController", function ($scope, $sce, $location, Request, Notify, $state) {
 
-    $scope.loading = true;
-    Request.make("POST", "/remesas/getall/").then(function (data) {
-        $scope.remesas = data;
+}).controller("adminRemesaController", function ($scope, $sce, $location, Request, Notify, $state,Modals,$filter) {
+    var datax = { remesas: [] };
+    $scope.ActiveRemesa = null;
+    $scope.Open = function (event) {
+        console.log(event);
+    }
+
+    $scope.ProcRemesa = function (remesa) {
+         
+        $scope.ActiveRemesa = remesa;
+     
+        Modals.showModal("id01");
+    }
+
+    $scope.filtrar = function (param) {
+
+         $scope.remesasx = $filter("filter")(datax.remesas, param);
+    }
+   
+    $scope.$watch('estatus', function (estatus) {
+        $scope.filtrar(estatus);
     });
-
-
+    Request.make("POST", "/remesas/getall/").then(function (data) {
+        datax.remesas = data;
+        $scope.remesasx = data;
+    })
 
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {
 
-    $scope.cambio = cambio;
+
+    function NewCambio() {
+        return angular.copy(cambio);
+    }
+
+    $scope.cambio = NewCambio();
     $scope.Enviar = function (event) {
         event.preventDefault();
         if (!$scope.form1.$valid) {
@@ -180,7 +210,7 @@
 
             if (data.estatus) {
                 alert("Cambio Actualizado");
-                
+                $scope.cambio = NewCambio();
             } else {
                 alert("Error al Actualizar, Consulte al Administrador");
             }
