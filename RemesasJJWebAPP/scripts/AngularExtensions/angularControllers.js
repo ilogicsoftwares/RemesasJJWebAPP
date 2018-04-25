@@ -171,7 +171,17 @@
     $scope.Open = function (event) {
         console.log(event);
     }
+    $scope.calcularTotals = function () {
+        $scope.sumDepositosSol = sumaDeposito($scope.remesasx, "montoDepositoN").totalSol;
+        $scope.sumDepositosDol = sumaDeposito($scope.remesasx, "montoDepositoN").totalDol;
+        $scope.sumEnvios = suma($scope.remesasx, "montoDestinoN");
+    }
 
+    Request.make("POST", "/Remesas/BancosEmpre/").then(function (data) {
+       
+        $scope.bancos = data;
+        
+    })
     $scope.ProcRemesa = function (remesa) {
          
         $scope.ActiveRemesa = remesa;
@@ -181,7 +191,31 @@
 
     $scope.filtrar = function (param) {
 
-         $scope.remesasx = $filter("filter")(datax.remesas, param);
+        $scope.remesasx = $filter("filter")(datax.remesas, param);
+        $scope.calcularTotals();
+    }
+   
+
+    function suma(array,property){
+        var total=0;
+        angular.forEach(array,function(item){
+            total=total + item[property];
+        })
+        return total;
+    }
+    function sumaDeposito(array, property) {
+        var totalSol = 0;
+        var TotalDol = 0;
+        angular.forEach(array, function (item) {
+            if (item.monedaDeposito == 1) {
+                totalSol = totalSol + item[property];
+            } else if (item.monedaDeposito == 2)
+                {
+                TotalDol = TotalDol + item[property];
+            }
+            
+        })
+        return { totalSol: totalSol, totalDol: TotalDol };
     }
    
     $scope.$watch('estatus', function (estatus) {
@@ -190,7 +224,8 @@
     Request.make("POST", "/remesas/getall/").then(function (data) {
         datax.remesas = data;
         $scope.remesasx = data;
-    })
+        $scope.calcularTotals();
+    });
 
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {
 
@@ -205,7 +240,7 @@
         if (!$scope.form1.$valid) {
             return
         }
-
+       
         Request.make("POST", "/cambios/create/", $scope.cambio).then(function (data) {
 
             if (data.estatus) {

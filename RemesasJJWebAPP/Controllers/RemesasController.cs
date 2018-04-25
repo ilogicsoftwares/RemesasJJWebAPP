@@ -12,6 +12,7 @@ namespace RemesasJJWebAPP.Controllers
     {
         // GET: Remesas
         Remesa remesax = new Remesa();
+        Bancos banco = new Bancos();
         public ActionResult Index()
         {
             return View();
@@ -26,10 +27,14 @@ namespace RemesasJJWebAPP.Controllers
                 x.id,
                 fecha = x.fecha.Value.ToShortDateString(),
                 x.nombreCliente,
-                montoDeposito = String.Format("{0:C}", x.montoDeposito),
+                x.moneda.sing,
+                x.monedaDeposito,
+                montoDeposito = x.moneda.sing + String.Format("{0:N}", x.montoDeposito),
+                montoDepositoN = x.montoDeposito,
                 x.nombreBenef,
                 x.cedulaBenef,
                 montoDestino = "Bs." + String.Format("{0:N}", x.montoDestino),
+                montoDestinoN =  x.montoDestino,
                 x.cuentaBenef,
                 banco = x.bancos.nombre,
                 estatus = x.estatus1.estatus1,
@@ -43,9 +48,14 @@ namespace RemesasJJWebAPP.Controllers
         }
 
         // GET: Remesas/Create
-        public ActionResult Create()
+        public JsonResult BancosEmpre()
         {
-            return View();
+            var bancos = banco.GetAllEmpre().Select(x=>new {
+                nombre=x.nombre,
+                id=x.id,
+                cuenta=x.cuentaNumero
+            });
+            return Json(bancos);
         }
 
         // POST: Remesas/Create

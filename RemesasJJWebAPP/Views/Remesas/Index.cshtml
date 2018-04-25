@@ -48,7 +48,7 @@
                     <td><a href="">{{remesa.id}}</a></td>
                     <td>{{remesa.fecha}}</td>
                     <td>{{remesa.nombreCliente}}</td>
-                    <td class="text-right">{{remesa.montoDeposito}}</td>
+                    <td ng-init="$parent.totalito=$parent.totalito+remesa.montoDepositoN" class="text-right">{{remesa.montoDeposito}}</td>
                     <td>{{remesa.nombreBenef}}</td>
                     <td>{{remesa.cedulaBenef}}</td>
                     <td>{{remesa.montoDestino}}</td>
@@ -61,6 +61,7 @@
         </table>
     </div>
     <dir-pagination-controls class="pull-right"></dir-pagination-controls>
+    Resumen: Total Deposito S/:{{totalito}} , Total Deposito $:{{sumDepositosDol}},Total Envio:{{sumEnvios}}
 </div>
 <div id="id01" class="w3-modal">
     <div class="w3-modal-content w3-container" style="width:800px">
@@ -83,17 +84,18 @@
                         ID Transferencia<input class="form-control" type="text" />
                     </div>
                     <div class="form-inline">
-                       Banco Deposito<select class="form-control"></select>
+                       Banco Deposito<select class="form-control" ng-model="bancoSel">
+                                         <option ng-repeat="item in bancos" value="{{item.id}}">{{item.nombre}}  {{item.cuenta}}</option>
+                        </select>
                     </div>
-                    <div class="form-inline">
-                       Cuenta<select class="form-control"></select>
-                    </div>
+                    <button ng-click="setRemesa(ActiveRemesa)" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
+                    <button ng-click="setRemesa(ActiveRemesa)" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
                 </div>
           
         </div>
         <footer>
-
-            <button ng-click="setRemesa(ActiveRemesa)" class="w3-btn w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
+           
+           
         </footer>
     </div>
 </div>
