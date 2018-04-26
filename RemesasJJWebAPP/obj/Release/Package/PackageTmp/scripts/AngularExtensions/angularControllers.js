@@ -166,22 +166,107 @@
     }
 
 }).controller("adminRemesaController", function ($scope, $sce, $location, Request, Notify, $state,Modals,$filter) {
+    
     var datax = { remesas: [] };
     $scope.ActiveRemesa = null;
+    $scope.modal = Modals;
     $scope.Open = function (event) {
         console.log(event);
     }
+    $scope.calcularTotals = function () {
+        $scope.sumDepositosSol = sumaDeposito($scope.remesasx, "montoDepositoN").totalSol;
+        $scope.sumDepositosDol = sumaDeposito($scope.remesasx, "montoDepositoN").totalDol;
+        $scope.sumEnvios = suma($scope.remesasx, "montoDestinoN");
+    }
+    
+    $scope.setRemesa = function (event, remesa) {
+        if (remesa.estatus == "RECIBIDA") { 
+        if (!$scope.form1.$valid)
+            return;
+        event.preventDefault();
+        var dataRemesa = { id: remesa.id, idDeposito: $scope.idDeposito, idTransf: $scope.idTransferencia, idBanco: $scope.bancoSel };
+        Request.make("POST", "/Remesas/ProcessRemesa/", dataRemesa).then(function (data) {
+            if (data.state==null)
+                window.alert("Erro de Conexion;");
+            if (data.state == true)
+                window.alert("Remesa Procesada");
+                remesa.estatus = data.newEstatus;
+                Modals.closeModal('id02');
+                $scope.calcularTotals();
+                if (data.state == false)
+                    window.alert("Ya existe una trasacción con el ticket " + $scope.idDeposito);
 
+        })
+            }
+    }
+    $scope.anular = function (remesa) {
+        Request.make("POST", "/Remesas/anular/",{id:remesa.id}).then(function (data) {
+            if (data.state == null)
+                window.alert("Erro de Conexion;");
+            if (data.state == true)
+                window.alert("Remesa Anulada");
+                Modals.closeModal("id01");
+                remesa.estatus = data.newStatus;
+                Modals.closeModal('id03');
+                $scope.calcularTotals();
+                if (data.state == false)
+                window.alert("No se puede anular una Remesa Procesada");
+
+        })
+
+    }
+
+    Request.make("POST", "/Remesas/BancosEmpre/").then(function (data) {
+       
+        $scope.bancos = data;
+        
+    })
     $scope.ProcRemesa = function (remesa) {
-         
+        $scope.idDeposito = "";
+        $scope.idTransferencia = "";
+        $scope.selected = 0;
+        $scope.Disable = false;
+        if (remesa.estatus != "RECIBIDA") {
+            $scope.idDeposito=remesa.ticketSerial;
+            $scope.idTransferencia=remesa.idtransf;
+            $scope.selected = remesa.bancoDeposito;
+            $scope.Disable = true;
+        }
+      
         $scope.ActiveRemesa = remesa;
      
         Modals.showModal("id01");
+       
     }
 
     $scope.filtrar = function (param) {
 
-         $scope.remesasx = $filter("filter")(datax.remesas, param);
+        $scope.remesasx = $filter("filter")(datax.remesas, param);
+        $scope.calcularTotals();
+    }
+   
+
+    function suma(array,property){
+        var total=0;
+        angular.forEach(array,function(item){
+            if (item.estatus == "PROCESADA")
+            total = total + item[property];
+        })
+        return total;
+    }
+    function sumaDeposito(array, property) {
+        var totalSol = 0;
+        var TotalDol = 0;
+        angular.forEach(array, function (item) {
+            if (item.monedaDeposito == 1 && item.estatus!="ANULADA") {
+                totalSol = totalSol + item[property];
+            } else if (item.monedaDeposito == 2 && item.estatus != "ANULADA")
+                {
+                TotalDol = TotalDol + item[property];
+            }
+            
+        })
+        return { totalSol: totalSol, totalDol: TotalDol };
     }
    
     $scope.$watch('estatus', function (estatus) {
@@ -190,7 +275,8 @@
     Request.make("POST", "/remesas/getall/").then(function (data) {
         datax.remesas = data;
         $scope.remesasx = data;
-    })
+        $scope.calcularTotals();
+    });
 
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {
 
@@ -205,7 +291,7 @@
         if (!$scope.form1.$valid) {
             return
         }
-
+       
         Request.make("POST", "/cambios/create/", $scope.cambio).then(function (data) {
 
             if (data.estatus) {

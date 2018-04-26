@@ -39,7 +39,10 @@ namespace RemesasJJWebAPP.Controllers
                 banco = x.bancos.nombre,
                 estatus = x.estatus1.estatus1,
                 img=x.file,
-                tipo=x.remesatype1.descripcion
+                tipo=x.remesatype1.descripcion,
+                x.ticketSerial,
+                x.idtransf,
+                x.bancoDeposito
                 
                          
 
@@ -60,24 +63,33 @@ namespace RemesasJJWebAPP.Controllers
 
         // POST: Remesas/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public JsonResult ProcessRemesa(int id, string idDeposito, string idTransf, int idBanco)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+          var process= remesax.processRemesa(id, idDeposito, idTransf, idBanco);
+          var nuevoStatus=  remesax.GetByID(id);
+          return Json(new {state=process,newEstatus=nuevoStatus.estatus1.estatus1});
         }
 
         // GET: Remesas/Edit/5
-        public ActionResult Edit(int id)
+        [HttpPost]
+        public JsonResult Anular(int id)
         {
-            return View();
+            try
+            {
+                var remesita = remesax.GetByID(id);
+                if (remesita.estatus == 2)
+                    return Json(new {state=false});
+                remesita.estatus = 3;
+                remesax.Update(remesita);
+                remesax.Save();
+                return Json(new { state = true,newStatus=remesita.estatus1.estatus1});
+            }
+            catch {
+                object x = null;
+                return Json(new {state = x});
+            }
+
+           
         }
 
         // POST: Remesas/Edit/5

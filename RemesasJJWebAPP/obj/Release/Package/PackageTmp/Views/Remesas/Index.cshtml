@@ -9,7 +9,7 @@
          <div class="col-sm-6">
              <div class="input-group">
                  <label for="inputFilter" class="col-form-label">Buscar:</label>
-                 <input class="form-control" type="text" ng-model="filtro" id="inputFilter" />
+                 <input class="form-control" type="text" ng-change="filtrar(filtro)" ng-model="filtro" id="inputFilter" />
                 
              </div>
            </div>
@@ -42,25 +42,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr dir-paginate="remesa in remesasx  | filter:filtro | itemsPerPage:20">
+                <tr dir-paginate="remesa in remesasx  | itemsPerPage:20">
 
 
                     <td><a href="">{{remesa.id}}</a></td>
                     <td>{{remesa.fecha}}</td>
                     <td>{{remesa.nombreCliente}}</td>
-                    <td class="text-right">{{remesa.montoDeposito}}</td>
+                    <td ng-init="$parent.totalito=$parent.totalito+remesa.montoDepositoN" class="text-right">{{remesa.montoDeposito}}</td>
                     <td>{{remesa.nombreBenef}}</td>
                     <td>{{remesa.cedulaBenef}}</td>
                     <td>{{remesa.montoDestino}}</td>
                     <td>{{remesa.cuentaBenef}}</td>
                     <td>{{remesa.banco}}</td>
-                    <td><a ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
-
+                    <td ng-show="remesa.estatus=='PROCESADA'"><a style="color:darkseagreen" ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
+                    <td ng-show="remesa.estatus=='RECIBIDA'"><a ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
+                    <td ng-show="remesa.estatus=='ANULADA'"><a style="color:red" ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
                 </tr>
             </tbody>
         </table>
     </div>
     <dir-pagination-controls class="pull-right"></dir-pagination-controls>
+    Resumen: Total Deposito S/:{{sumDepositosSol | currency:'':2}} , Total Deposito $:{{sumDepositosDol| currency:'':2}},Total Envio:Bs.{{sumEnvios | currency:'':2}}
 </div>
 <div id="id01" class="w3-modal">
     <div class="w3-modal-content w3-container" style="width:800px">
@@ -75,25 +77,26 @@
                  <div class="col-sm-4">
                     <a class="img-responsive" href="" ng-click="show('id02')"><img width="200" src="~/Content/Uploads/{{ActiveRemesa.img}}" /></a>
                 </div>
-                <div class="col-sm-8">
+                <form name="form1" class="col-sm-8">
                     <div class="form-inline">
-                        ID Deposito<input class="form-control" type="text" />
+                        ID Deposito<input ng-disabled="Disable" class="form-control" ng-model="idDeposito" type="text" required/>
                     </div>
                     <div class="form-inline">
-                        ID Transferencia<input class="form-control" type="text" />
+                        ID Transferencia<input ng-disabled="Disable" class="form-control" type="text" ng-model="idTransferencia" required />
                     </div>
                     <div class="form-inline">
-                       Banco Deposito<select class="form-control"></select>
+                       Banco Deposito<select ng-disabled="Disable" class="form-control" ng-model="bancoSel"  required>
+                                         <option ng-selected="selected==item.id" ng-repeat="item in bancos" value="{{item.id}}">{{item.nombre}}  {{item.cuenta}}</option>
+                        </select>
                     </div>
-                    <div class="form-inline">
-                       Cuenta<select class="form-control"></select>
-                    </div>
-                </div>
+                    <button type="submit" ng-disabled="Disable" ng-click="setRemesa($event,ActiveRemesa)" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
+                    <button ng-disabled="Disable" ng-click="modal.showModal('id03')" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
+                </form>
           
         </div>
         <footer>
-
-            <button ng-click="setRemesa(ActiveRemesa)" class="w3-btn w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
+           
+           
         </footer>
     </div>
 </div>
@@ -107,5 +110,17 @@
         </div>
             <img class="img-responsive" src="~/Content/Uploads/{{ActiveRemesa.img}}" /> 
      </div>
+
+</div>
+<div id="id03" class="w3-modal">
+    <div class="w3-modal-content w3-container" style="width:800px">
+        <div class="w3-border-bottom">
+            <span ng-click="close('id03')" class="w3-button w3-display-topright">&times;</span>
+            <h3>Seguro desea Anular la Remesa?</h3>
+
+        </div>
+        <button ng-click="modal.closeModal('id03');modal.closeModal('id02')" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Cancelar</button>
+        <button ng-click="anular(ActiveRemesa)" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
+    </div>
 
 </div>

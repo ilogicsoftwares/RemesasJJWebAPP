@@ -18,6 +18,7 @@ namespace RemesasJJWebAPP.Controllers
         // GET: Form
         Remesa remex = new Remesa();
         Bancos bancos = new Bancos();
+        Change change = new Change();
         RemesasJJ.Logics.SendGrid sendMail = new RemesasJJ.Logics.SendGrid();
 
         public ActionResult Index()
@@ -87,6 +88,7 @@ namespace RemesasJJWebAPP.Controllers
             {
                 remesa.file = file;
                 remesa.estatus = 1;
+                remesa.cambioid = change.GetActualChange().id;
                 remesa.paisDestino = 1;
                 remesa.fecha = DateTime.Now;
                 remex.Insert(remesa);
