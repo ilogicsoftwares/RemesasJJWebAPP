@@ -15,6 +15,7 @@ namespace RemesasJJWebAPP.Controllers
         public Remesa remesas = new Remesa();
         public ActionResult Index()
         {
+            cambio.context.Configuration.ProxyCreationEnabled = false;
             var cambiox = cambio.GetActualChange();
             var remesax = remesas.New();
             ViewBag.cambiox = JsonConvert.SerializeObject(cambiox);

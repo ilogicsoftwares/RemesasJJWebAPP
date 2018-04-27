@@ -77,7 +77,7 @@
             <input id="male" class="w3-radio" type="radio" name="monedaDeposito" ng-model="remesa.monedaDeposito" ng-click="calEnviox()" value="2" >
             <label>DÓLARES</label><br/>
             <label>Monto</label>
-            <input class="w3-input text-right" type="number" min="10" pattern="^[1-9]\d*$" ng-model="remesa.montoDeposito" value="male" ng-change="calEnvio()" required>
+            <input class="w3-input text-right" type="text" min="10" pattern="^[1-9]\d*$" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="remesa.montoDeposito" value="male" ng-change="calEnvio()" required>
             <h2 class="text-right">Total Bs.{{remesa.montoDestino | currency: '': 2}}</h2>
         </p>
         <p id="4" class="form-group">

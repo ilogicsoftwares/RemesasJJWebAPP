@@ -87,3 +87,4 @@ C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Mvc.xml
 C:\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.csprojResolveAssemblyReference.cache
 C:\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.dll
 C:\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.pdb
+C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\RemesasJJ.dll
