@@ -1,5 +1,5 @@
-﻿angular.module("RemesasApp", ["angularServices", "angularConfig", "angularUtils.directives.dirPagination"])
- .controller("HomeController", function ($scope, $sce, $location,Request, Notify,$state) {
+﻿angular.module("RemesasApp", ["angularServices", "angularFilters", "angularConfig", "angularUtils.directives.dirPagination"])
+ .controller("HomeController", function ($scope, $sce, $location, Request, Notify, $state) {
      $scope.user = { nombre: "", codigo: "" };
      $state.go("Form");
      $scope.createNew = function () {

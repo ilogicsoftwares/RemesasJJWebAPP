@@ -341,6 +341,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Uploads\" />
+    <Folder Include="Logics\" />
     <Folder Include="Views\Cambios\" />
   </ItemGroup>
   <ItemGroup>

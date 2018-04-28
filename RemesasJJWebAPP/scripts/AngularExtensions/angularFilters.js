@@ -12,5 +12,12 @@
         return (!angular.isUndefined(prop) ? array.map(function (item) {
             return item[prop];
         }) : array).join(separator);
-    };
+    }
+
+}).filter('currencyde', function () {
+    return function (input) {
+        return input.toFixed(2) // always two decimal digits
+       .replace(".", ",") // replace decimal point character with ,
+       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // use . as a separator
+    }
 });

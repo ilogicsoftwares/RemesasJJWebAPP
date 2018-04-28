@@ -2,6 +2,7 @@
 using RemesasJJ.Logics;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,15 +26,15 @@ namespace RemesasJJWebAPP.Controllers
              var remesas = remesax.GetAll();
             var remex = remesas.Select(x => new {
                 x.id,
-                fecha = x.fecha.Value.ToShortDateString(),
+                fecha = x.fecha.Value.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                 x.nombreCliente,
                 x.moneda.sing,
                 x.monedaDeposito,
-                montoDeposito = x.moneda.sing + String.Format("{0:N}", x.montoDeposito),
+                montoDeposito = x.moneda.sing + x.montoDeposito.ToString("N",CultureInfo.CreateSpecificCulture("da-DK")),
                 montoDepositoN = x.montoDeposito,
                 x.nombreBenef,
                 cedulaBenef= x.cedulatype.nombre+x.cedulaBenef,
-                montoDestino = "Bs." + String.Format("{0:N}", x.montoDestino),
+                montoDestino = "Bs." +  x.montoDestino.ToString("N", CultureInfo.CreateSpecificCulture("da-DK")),
                 montoDestinoN =  x.montoDestino,
                 x.cuentaBenef,
                 banco = x.bancos.nombre,
