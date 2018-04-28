@@ -32,7 +32,7 @@ namespace RemesasJJWebAPP.Controllers
                 montoDeposito = x.moneda.sing + String.Format("{0:N}", x.montoDeposito),
                 montoDepositoN = x.montoDeposito,
                 x.nombreBenef,
-                x.cedulaBenef,
+                cedulaBenef= x.cedulatype.nombre+x.cedulaBenef,
                 montoDestino = "Bs." + String.Format("{0:N}", x.montoDestino),
                 montoDestinoN =  x.montoDestino,
                 x.cuentaBenef,
