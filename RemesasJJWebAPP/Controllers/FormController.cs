@@ -25,7 +25,18 @@ namespace RemesasJJWebAPP.Controllers
         {
             return View();
         }
-
+        public ActionResult form2()
+        {
+            return View();
+        }
+        public ActionResult form3()
+        {
+            return View();
+        }
+        public ActionResult form4()
+        {
+            return View();
+        }
         public JsonResult uploadFileClient(HttpPostedFileBase File)
         {
 

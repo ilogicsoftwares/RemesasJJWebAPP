@@ -318,10 +318,10 @@
                         <input ng-model="monto" style="text-align:right" type="number" class="form-control" id="usr">
                      </div>
                     <div ng-show="!dolarAct" class="col-lg-9 cta-btn-container text-center">
-                        <h1 style="color:white" class="text-right"><strong>Bs.{{total | currency: '': 2}}</strong></h1>
+                        <h1 style="color:white" class="text-right"><strong>Bs.{{total | currencyde}}</strong></h1>
                     </div>
                     <div ng-show="dolarAct" class="col-lg-9 cta-btn-container text-center">
-                        <h1 style="color:white" class="text-right"><strong>${{total | currency: '': 2}}</strong></h1>
+                        <h1 style="color:white" class="text-right"><strong>${{total | currencyde}}</strong></h1>
                     </div>
                  </div>
 
@@ -471,18 +471,21 @@
     <script src="~/scripts/AngularExtensions/angularServices.js"></script>
     <script src="~/scripts/AngularExtensions/angularConfig.js"></script>
     <script src="~/scripts/AngularExtensions/angularDirectives.js"></script>
+    <script src="~/scripts/AngularExtensions/angularFilters.js"></script>
     <script src="~/scripts/AngularExtensions/angularControllers.js"></script>
     <script src="~/scripts/angular-route.js"></script>
     <script>
         var cambioxz=@Html.Raw(ViewBag.cambiox);
-        var remesax=@Html.Raw(ViewBag.remesas);
+        var remesamain=@Html.Raw(ViewBag.remesas);
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             $("#dolarBs").text(toCurrency(cambioxz.bolivares));
             $("#solBs").text(toCurrency(cambioxz.bolivares / cambioxz.cambio1));
             $("#fecha").text((new Date()).toLocaleDateString("es-ES", options));
 
             function toCurrency(number){
-                return "Bs." + number.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+                return "Bs." + number.toFixed(2) // always two decimal digits
+       .replace(".", ",") // replace decimal point character with ,
+       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // use . as a separator
             }
 
 

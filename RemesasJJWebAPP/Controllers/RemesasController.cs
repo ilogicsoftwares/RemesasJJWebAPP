@@ -23,8 +23,8 @@ namespace RemesasJJWebAPP.Controllers
         [HttpPost]
         public JsonResult GetAll()
         {
-             var remesas = remesax.GetAll();
-            var remex = remesas.Select(x => new {
+            var remesas = remesax.GetAll();
+            var remex = remesas.ToList().Select(x => new {
                 x.id,
                 fecha = x.fecha.Value.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                 x.nombreCliente,
@@ -37,15 +37,14 @@ namespace RemesasJJWebAPP.Controllers
                 montoDestino = "Bs." +  x.montoDestino.ToString("N", CultureInfo.CreateSpecificCulture("da-DK")),
                 montoDestinoN =  x.montoDestino,
                 x.cuentaBenef,
-                banco = x.bancos.nombre,
+                banco = x.bancos==null ? null: x.bancos.nombre,
                 estatus = x.estatus1.estatus1,
+                estatusId=x.estatus,
                 img=x.file,
                 tipo=x.remesatype1.descripcion,
                 x.ticketSerial,
                 x.idtransf,
                 x.bancoDeposito
-                
-                         
 
             });
              return Json(remex);
@@ -109,26 +108,33 @@ namespace RemesasJJWebAPP.Controllers
             }
         }
 
-        // GET: Remesas/Delete/5
-        public ActionResult Delete(int id)
+        [HttpPost]
+        public JsonResult GetEstatus(int id)
         {
-            return View();
+            string estatus;
+            try
+            {
+                 estatus= remesax.GetByID(id).estatus1.estatus1;
+            }catch(Exception ex)
+            {
+                return Json(null);
+            }
+             
+            return Json(estatus);
         }
 
         // POST: Remesas/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public JsonResult GetEst(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+          
+           var rem = remesax.GetByID(id);
+           return Json(new {id=rem.id,
+               estatus =rem.estatus1.estatus1,
+               ticketSerial=rem.ticketSerial,
+               idtransf=rem.idtransf,
+               bancoDeposito=rem.bancoDeposito,
+               estatusId =rem.estatus});
         }
     }
 }

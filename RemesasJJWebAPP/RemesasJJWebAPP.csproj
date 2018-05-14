@@ -331,6 +331,9 @@
     <Content Include="Views\Form\message.cshtml" />
     <Content Include="Views\Form\Error.cshtml" />
     <Content Include="Views\Remesas\Index.cshtml" />
+    <Content Include="Views\Form\form2.cshtml" />
+    <Content Include="Views\Form\form3.cshtml" />
+    <Content Include="Views\Form\form4.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -35,7 +35,6 @@
           }
       }).state({
           name: "Form",
-          url: "/home",
           templateUrl: "/form/index",
           controller: "FormController",
           resolve: {
@@ -43,7 +42,33 @@
                   return Request.make("POST","/form/Bancos/");
               }
           }
-
+      }).state({
+          name: "Form2",
+          templateUrl: "/form/form2",
+          controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+                  return Request.make("POST", "/form/Bancos/");
+              }
+          }
+      }).state({
+          name: "Form3",
+          templateUrl: "/form/form3",
+          controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+                  return Request.make("POST", "/form/Bancos/");
+              }
+          }
+      }).state({
+          name: "Form4",
+          templateUrl: "/form/form4",
+          controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+                  return Request.make("POST", "/form/Bancos/");
+              }
+          }
       }).state({
           name: "Message",
           url: "/Message",

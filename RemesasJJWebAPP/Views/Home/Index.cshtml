@@ -476,7 +476,7 @@
     <script src="~/scripts/angular-route.js"></script>
     <script>
         var cambioxz=@Html.Raw(ViewBag.cambiox);
-        var remesax=@Html.Raw(ViewBag.remesas);
+        var remesamain=@Html.Raw(ViewBag.remesas);
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             $("#dolarBs").text(toCurrency(cambioxz.bolivares));
             $("#solBs").text(toCurrency(cambioxz.bolivares / cambioxz.cambio1));
