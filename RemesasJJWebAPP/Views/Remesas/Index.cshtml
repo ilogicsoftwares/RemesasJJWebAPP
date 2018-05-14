@@ -14,7 +14,9 @@
              </div>
            </div>
          <div class="col-sm-6" style="margin-top:28px;">
-             <input type="button" class="btn btn-default btn-sm pull-right" ng-click="" value="+" style="font-weight:bold;font-size:medium" title="Nueva Remesa"/>
+             <a  class="btn btn-default btn-sm pull-right" ui-sref="ReporteGeneral" value="+" style="font-weight:bold;font-size:medium" title="Imprimir">
+                 <span class="glyphicon glyphicon-print"></span>
+             </a>
              <div class="form-group pull-right" style="margin-right:10px;margin-top:5px">
                  <label class="radio-inline"><input type="radio" ng-model="estatus" value="Recibida" name="optradio">Recibidas</label>
                  <label class="radio-inline"><input type="radio" ng-model="estatus" value="Procesada" name="optradio">Procesadas</label>

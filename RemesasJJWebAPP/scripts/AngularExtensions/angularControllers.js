@@ -68,6 +68,9 @@
 
 }).controller("adminHomeController", function ($scope, $sce, $location, Request, Notify, $state) {
 
+}).controller("ReportGController", function ($scope, $sce, $location, Request, Notify, $state,bancos) {
+    $scope.fecha = new Date().toLocaleDateString();
+    $scope.bancos = bancos;
 }).controller("messageController", function ($scope, $sce, $location, Request, Notify, $state) {
         $scope.goToNew = function () {
         window.location.href = "/";

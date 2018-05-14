@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+   
+</head>
+<body>
+   
+    <div class="container">
+        <div class="row" id="ReportHeader">
+            <p class="pull-right" ng-bind="fecha"></p>
+
+        </div>
+        <div class="row" id="controls">
+
+            <button class="btn btn-default btn-sm pull-right no-print" onclick="window.print()" value="+" style="font-weight:bold;font-size:medium" title="Imprimir">
+                <span class="glyphicon glyphicon-print"></span>
+            </button>
+        </div>
+
+        <div class="row">
+            <h1 style="text-decoration:underline" class="text-center">Reporte General Diario</h1>
+        </div>
+        <div id="content" class="row">
+
+            <div id="totalesBancos">
+                <h3>Totales Bancarios</h3>
+                <div class="col-xs-8">
+                    <ul>
+                        <li ng-repeat="banco in bancos">{{banco.nombre + "" + banco.cuenta}}</li>
+                    </ul>
+                </div>
+                <div class="col-xs-3">
+                    <ul>
+                        <li style="list-style-type:none" ng-repeat="banco in bancos" class="text-right">{{"$0.00"}}</li>
+                    </ul>
+                </div>
+             
+            </div>
+           
+            <div id="totalesResumen">
+                <h3>Resumen Día</h3>
+                <div class="col-xs-8">
+                    <ul>
+                        <li>Total Depositos S/:</li>
+                        <li>Total Depositos $:</li>
+                        <li>Total Depositos General $:</li>
+                        <li>Total General Enviado Bs.:</li>
+
+                    </ul>
+                </div>
+               
+                <div class="col-xs-3">
+                    <ul style="list-style-type:none"  class="text-right">
+                        
+                        <li>0.00</li>
+                        <li>0.00</li>
+                        <li>0.00</li>
+                        <li>0.00</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+ 
+</body>
+
+</html>
