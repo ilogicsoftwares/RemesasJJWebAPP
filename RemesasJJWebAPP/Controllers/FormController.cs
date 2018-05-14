@@ -101,7 +101,7 @@ namespace RemesasJJWebAPP.Controllers
                 remesa.estatus = 1;
                 remesa.cambioid = change.GetActualChange().id;
                 remesa.paisDestino = 1;
-                remesa.fecha = DateTime.Now;
+              //  remesa.fecha = DateTime.Now;
                 remex.Insert(remesa);
                 remex.Save();
                 var bacon=bancos.GetByID((int)remesa.bancoBenef);

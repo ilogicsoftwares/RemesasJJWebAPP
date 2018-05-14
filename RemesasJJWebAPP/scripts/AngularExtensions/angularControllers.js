@@ -113,7 +113,7 @@
         $scope.Botton = false;
         $scope.loading2 = true;
         state.preventDefault();
-
+        $scope.remesa.fecha = new Date();
         Request.make("POST", "/Form/Enviar", { remesa: $scope.remesa, file: $scope.file.filename}).then(function (data) {
             if (data.estatus) {
                 $scope.user.nombre = data.nombre;
