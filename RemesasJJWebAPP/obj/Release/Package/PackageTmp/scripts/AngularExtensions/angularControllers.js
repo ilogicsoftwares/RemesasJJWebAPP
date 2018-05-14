@@ -68,6 +68,9 @@
 
 }).controller("adminHomeController", function ($scope, $sce, $location, Request, Notify, $state) {
 
+}).controller("ReportGController", function ($scope, $sce, $location, Request, Notify, $state,bancos) {
+    $scope.fecha = new Date().toLocaleDateString();
+    $scope.bancos = bancos;
 }).controller("messageController", function ($scope, $sce, $location, Request, Notify, $state) {
         $scope.goToNew = function () {
         window.location.href = "/";
@@ -113,7 +116,7 @@
         $scope.Botton = false;
         $scope.loading2 = true;
         state.preventDefault();
-
+        $scope.remesa.fecha = new Date();
         Request.make("POST", "/Form/Enviar", { remesa: $scope.remesa, file: $scope.file.filename}).then(function (data) {
             if (data.estatus) {
                 $scope.user.nombre = data.nombre;
@@ -193,6 +196,12 @@
     $scope.Open = function (event) {
         console.log(event);
     }
+
+    Request.make("POST", "/remesas/getall/").then(function (data) {
+        datax.remesas = data;
+        $scope.remesasx = data;
+        $scope.calcularTotals();
+    });
     $scope.calcularTotals = function () {
         $scope.sumDepositosSol = sumaDeposito($scope.remesasx, "montoDepositoN").totalSol;
         $scope.sumDepositosDol = sumaDeposito($scope.remesasx, "montoDepositoN").totalDol;
@@ -246,16 +255,31 @@
         $scope.idTransferencia = "";
         $scope.selected = 0;
         $scope.Disable = false;
-        if (remesa.estatus != "RECIBIDA") {
-            $scope.idDeposito=remesa.ticketSerial;
-            $scope.idTransferencia=remesa.idtransf;
-            $scope.selected = remesa.bancoDeposito;
-            $scope.Disable = true;
-        }
+        var estatusActual;
+        Request.make("POST", "/Remesas/GetEst/"+remesa.id).then(function (data) {
+
+            var actRemesa = remesa;
+            estatusActual = data.estatus;
+            
+            if (remesa.estatus != estatusActual) {
+                actRemesa = data;
+                remesa.estatus = estatusActual;
+
+            }
+
+            if (estatusActual != "RECIBIDA") {
+                $scope.idDeposito = actRemesa.ticketSerial;
+                $scope.idTransferencia = actRemesa.idtransf;
+                $scope.selected = actRemesa.bancoDeposito;
+                $scope.Disable = true;
+                
+            }
+         
+            $scope.ActiveRemesa = remesa;
+            Modals.showModal("id01");
+
+        })
       
-        $scope.ActiveRemesa = remesa;
-     
-        Modals.showModal("id01");
        
     }
 
@@ -292,11 +316,7 @@
     $scope.$watch('estatus', function (estatus) {
         $scope.filtrar(estatus);
     });
-    Request.make("POST", "/remesas/getall/").then(function (data) {
-        datax.remesas = data;
-        $scope.remesasx = data;
-        $scope.calcularTotals();
-    });
+   
 
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {
 

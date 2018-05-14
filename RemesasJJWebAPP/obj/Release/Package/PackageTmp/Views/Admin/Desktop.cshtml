@@ -25,7 +25,13 @@
 </head>
 
 <body ng-app="RemesasApp" ng-controller="adminController">
-
+    <style>
+        @@media print {
+            .no-print, .no-print * {
+                display: none !important;
+            }
+        }
+    </style>
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -59,7 +65,7 @@
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
-        <a style="background-color:black;border:0px;margin-left:-1px;color:white"  href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Menú</a>
+        <a style="background-color:black;border:0px;margin-left:-1px;color:white"  href="#menu-toggle" class="btn btn-secondary no-print" id="menu-toggle">Menú</a>
         
         
         <div id="page-content-wrapper">

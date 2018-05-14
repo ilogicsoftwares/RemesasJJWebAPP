@@ -61,6 +61,15 @@
               }
           }
       }).state({
+          name: "ReporteGeneral",
+          templateUrl: "/reports/GeneralRemesas",
+          controller: "ReportGController",
+          resolve: {
+              bancos: function (Request) {
+                  return Request.make("POST", "/remesas/BancosEmpre/");
+              }
+          }
+      }).state({
           name: "Form4",
           templateUrl: "/form/form4",
           controller: "FormController",

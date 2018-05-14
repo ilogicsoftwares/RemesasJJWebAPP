@@ -14,7 +14,9 @@
              </div>
            </div>
          <div class="col-sm-6" style="margin-top:28px;">
-             <input type="button" class="btn btn-default btn-sm pull-right" ng-click="" value="+" style="font-weight:bold;font-size:medium" title="Nueva Remesa"/>
+             <a  class="btn btn-default btn-sm pull-right" ui-sref="ReporteGeneral" value="+" style="font-weight:bold;font-size:medium" title="Imprimir">
+                 <span class="glyphicon glyphicon-print"></span>
+             </a>
              <div class="form-group pull-right" style="margin-right:10px;margin-top:5px">
                  <label class="radio-inline"><input type="radio" ng-model="estatus" value="Recibida" name="optradio">Recibidas</label>
                  <label class="radio-inline"><input type="radio" ng-model="estatus" value="Procesada" name="optradio">Procesadas</label>
@@ -89,7 +91,7 @@
                                          <option ng-selected="selected==item.id" ng-repeat="item in bancos" value="{{item.id}}">{{item.nombre}}  {{item.cuenta}}</option>
                         </select>
                     </div>
-                    <button type="submit" ng-disabled="Disable" ng-click="setRemesa($event,ActiveRemesa)" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
+                    <button type="submit" ng-disabled="Disable" ng-click="modal.showModal('id04')" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
                     <button ng-disabled="Disable" ng-click="modal.showModal('id03')" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
                 </form>
           
@@ -121,6 +123,18 @@
         </div>
         <button ng-click="modal.closeModal('id03');modal.closeModal('id02')" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Cancelar</button>
         <button ng-click="anular(ActiveRemesa)" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
+    </div>
+
+</div>
+<div id="id04" class="w3-modal">
+    <div class="w3-modal-content w3-container" style="width:800px">
+        <div class="w3-border-bottom">
+            <span ng-click="close('id04')" class="w3-button w3-display-topright">&times;</span>
+            <h3>Seguro desea Procesar la Remesa?</h3>
+
+        </div>
+        <button ng-click="modal.closeModal('id03');modal.closeModal('id04')" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Cancelar</button>
+        <button ng-click="setRemesa($event,ActiveRemesa)" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Procesar</button>
     </div>
 
 </div>
