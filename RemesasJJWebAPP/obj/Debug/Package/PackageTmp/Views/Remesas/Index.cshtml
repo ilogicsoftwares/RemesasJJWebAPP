@@ -48,6 +48,7 @@
                     <th>Total Envio</th>
                     <th>Numero de Cuenta</th>
                     <th>Banco</th>
+                    <th>Tipo de Envio</th>
                     <th>Estatus</th>
                 </tr>
             </thead>
@@ -64,6 +65,7 @@
                     <td>{{remesa.montoDestino}}</td>
                     <td>{{remesa.cuentaBenef}}</td>
                     <td>{{remesa.banco}}</td>
+                    <td>{{remesa.tipo}} </td>
                     <td ng-show="remesa.estatus=='PROCESADA'"><a style="color:darkseagreen" ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
                     <td ng-show="remesa.estatus=='RECIBIDA'"><a ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
                     <td ng-show="remesa.estatus=='ANULADA'"><a style="color:red" ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
@@ -128,8 +130,9 @@
                         <p style="color:red">{{ImgError}}</p>
                         <div ng-show="loading"><p>Imagen Cargada</p></div>
                         <img id="fileimage" class="img-responsive" width="35" src="~/Content/Uploads/{{newFileName}}" />
+                        <button type="button" ng-click="enviarEmail(ActiveRemesa.id)" class="w3-btn w3-margin-top w3-margin-left w3-border w3-border-blue w3-round w3-tiny w3-right">Enviar Email</button>
                         <button type="submit" ng-disabled="Disable" ng-click="modal.showModal('id04')" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
-                        <button ng-click="modal.showModal('id03')" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
+                        <button ng-click="checkAnulado(ActiveRemesa.id)" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
                     </div>
                         </form>
           
@@ -157,10 +160,13 @@
         <div class="w3-border-bottom">
             <span ng-click="close('id03')" class="w3-button w3-display-topright">&times;</span>
             <h3>Seguro desea Anular la Remesa?</h3>
+            <textarea ng-disabled="disableAnula" ng-model="AnulaDetail" class="form-control" placeholder="Indique la causa de la anulación" required>
 
+            </textarea>
+            <input ng-disabled="disableAnula" type="checkbox" ng-model="SendAnulaEmail" title="Enviar correo" /> Enviar Correo
         </div>
         <button ng-click="modal.closeModal('id03');modal.closeModal('id02')" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Cancelar</button>
-        <button ng-click="anular(ActiveRemesa)" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
+        <button ng-disabled="disableAnula" ng-click="anular(ActiveRemesa,$event)" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
     </div>
 
 </div>

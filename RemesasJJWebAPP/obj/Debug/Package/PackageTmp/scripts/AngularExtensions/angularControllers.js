@@ -350,8 +350,8 @@
 }).controller("adminRemesaController", function ($scope, $sce, $location, Request, Notify, $http , $state,Modals,$filter) {
     
 
-
-
+    $scope.AnulaDetail = "";
+    $scope.disableAnula = false;
 
     $scope.showFile = false;
     $scope.file = { filename: "" };
@@ -364,6 +364,30 @@
         console.log(event);
     }
    
+    $scope.checkAnulado = function (idRemesas) {
+        $scope.AnulaDetail = "";
+        $scope.disableAnula = false;
+       
+        Request.make("POST", "/Remesas/checkAnulado/", { id: idRemesas }).then(function (data) {
+            
+            if (data.estatus==3 && data!=null)
+            {
+                $scope.AnulaDetail = data.unulaDetail;
+                $scope.disableAnula = true;
+            }
+            Modals.showModal('id03');
+        });
+
+
+    }
+
+    $scope.enviarEmail = function (id) {
+        Request.make("POST", "/form/EnviarProc/", { remesaID: id }).then(function (data) {
+            window.alert("Correo Enviado");
+        });
+
+    }
+
     $scope.GeneralReport = function () {
         $state.go("ReporteGeneral");
     }
@@ -462,8 +486,15 @@
         })
             }
     }
-    $scope.anular = function (remesa) {
-        Request.make("POST", "/Remesas/anular/",{id:remesa.id}).then(function (data) {
+    $scope.anular = function (remesa,state) {
+        Request.make("POST", "/Remesas/anular/",{id:remesa.id,anulaDetail:$scope.AnulaDetail}).then(function (data) {
+
+            if ($scope.AnulaDetail=="") {
+                window.alert("Debe colocar una Descripción para la anulación");
+                return;
+            }
+            state.preventDefault();
+
             if (data.state == null)
                 window.alert("Erro de Conexion;");
             if (data.state == true)
