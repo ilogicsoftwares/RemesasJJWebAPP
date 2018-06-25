@@ -25,7 +25,7 @@
           }
       }).state({
           name: "ActRemesa",
-          url: "/remesas/",
+          url: "/remesas/Remesas",
           templateUrl: "/remesas/index",
           controller: "adminRemesaController",
           resolve: {
@@ -62,13 +62,15 @@
           }
       }).state({
           name: "ReporteGeneral",
+          url:"/reports/reporteDiario",
           templateUrl: "/reports/GeneralRemesas",
           controller: "ReportGController",
           resolve: {
-              bancos: function (Request) {
-                  return Request.make("POST", "/remesas/BancosEmpre/");
-              }
-          }
+          bancos: function (Request) {
+             return Request.make("POST", "/Remesas/BancosEmpre/");
+         }
+     }
+          
       }).state({
           name: "Form4",
           templateUrl: "/form/form4",

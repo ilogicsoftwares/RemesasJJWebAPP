@@ -2,9 +2,9 @@
 @{
     Layout = null;
 }
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<body>
 
+<body>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <div class="w3-container w3-green">
         <h2 class="text-center">FORMULARIO DE ENVIO</h2>
     </div>
@@ -13,88 +13,48 @@
         <h2>Datos del Benificiario</h2>
         <p>
             <label>Nombre Completo</label>
-            <input class="w3-input w3-animate-input" type="text" ng-model="remesa.nombreBenef" required>
+            <input id="nombreComp" class="w3-input w3-animate-input" type="text" ng-model="remesa.remex.nombreBenef" required>
         </p>
         <p>
             <label>Cedula</label>
-            <input class="w3-input w3-animate-input" type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="remesa.cedulaBenef" required>
+            <input id="cedula" class="w3-input w3-animate-input" type="text" pattern=".{7,}" maxlength="10"  required title="7 caracteres minimos" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="remesa.remex.cedulaBenef" required>
         </p>
         <p id="1" class="form-group">
             <label>Tipo de Cedula: </label>
-            <input id="male" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.cedulaBenefType" value="1" checked required>
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.remex.cedulaBenefType" value="1" checked required>
             <label>V</label>
-            <input id="male" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.cedulaBenefType" value="2" >
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.remex.cedulaBenefType" value="2" >
             <label>P</label>
-            <input id="male" class="w3-radio" type="radio" name="cedulaBenefType"  ng-model="remesa.cedulaBenefType" value="3" >
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType"  ng-model="remesa.remex.cedulaBenefType" value="3" >
             <label>E</label>
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.remex.cedulaBenefType" value="4">
+            <label>J</label>
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.remex.cedulaBenefType" value="5">
+            <label>G</label>
         </p>
-        <p>
-            <h2>Banco del Beneficiario </h2>
-            <select class="w3-select" name="option" ng-model="remesa.bancoBenef">
-                <option value="" disabled selected>Choose your option</option>
-                <option value="1">Banesco Banco Universal</option>
-                <option value="2">Banco de Venezuela</option>
-                <option value="3">Banco Provincial</option>
-            </select>
-        </p>
-        <p>
-            <label>Numero de Cuenta</label>
-            <input maxlength="20" pattern=".{20,20}" class="w3-input w3-animate-input" type="text" number-mask="" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="remesa.cuentaBenef" required title="Numero de cuenta de 20 digitos">
-        </p>
-        <p id="2" class="form-group">
-            <label>Tipo de Cuenta</label>
-            <input id="male" class="w3-radio" type="radio" name="cuentaBenefType" ng-model="remesa.cuentaBenefType" value="1" required >
-            <label>Ahorro</label>
-            <input id="male" class="w3-radio" type="radio" name="cuentaBenefType"  ng-model="remesa.cuentaBenefType" value="2" checked>
-            <label>Corriente</label>       
-        </p>
-        <p id="3" class="form-group">
-            <h2>Forma de Pago</h2><br/>
-            <input id="male" class="w3-radio" type="radio" name="remesaType" ng-model="remesa.remesaType" value="1" ng-click="showForm(false)"  required>
-            <label>Oficina</label>
-            <input id="male" class="w3-radio" type="radio" name="remesaType" ng-model="remesa.remesaType" value="2" ng-click="showForm(true)" checked >
-            <label>Depósito</label>
-            <input id="male" class="w3-radio" type="radio" name="remesaType" ng-model="remesa.remesaType" value="3" ng-click="showForm(true)" >
-            <label>Transferencia</label>
-        </p>
-        <div ng-show="depoTran">
-            <p id="4" class="form-group">
-                <h2>Adjuntar Voucher</h2><br />
-                <input  class="w3-input" id="file" type="file"  value="male" ng-model="filejpg" onchange="angular.element(this).scope().add()">
-                <div  class="loader" ng-show="loading"></div>
-                <img id="fileimage" class="img-responsive" width="35" ng-show="showFile" src="~/uploads/{{newFileName}}"/>
-                <label>Fecha</label>
-                <input id="fecha" class="w3-input" type="date" name="fecha" ng-model="remesa.fecha">
-                <label>Número de Transacción</label>
-                <input id="nunTrans" class="w3-input" type="text" name="nunTrans">
-            </p>
-        </div>
-        <p id="3" class="form-group">
-            <h2>Moneda</h2><br />
-            <input id="male" class="w3-radio" type="radio" name="monedaDeposito" ng-model="remesa.monedaDeposito" ng-click="calEnviox()" value="1" required checked>
-            <label>SOLES</label>
-            <input id="male" class="w3-radio" type="radio" name="monedaDeposito" ng-model="remesa.monedaDeposito" ng-click="calEnviox()" value="2" >
-            <label>DÓLARES</label><br/>
-            <label>Monto</label>
-            <input class="w3-input text-right" type="number" min="10" pattern="^[1-9]\d*$" ng-model="remesa.montoDeposito" value="male" ng-change="calEnvio()" required>
-            <h2 class="text-right">Total Bs.{{remesa.montoDestino | currency: '': 2}}</h2>
-        </p>
-        <p id="4" class="form-group">
-            <h2>Datos del Depositante:</h2><br />
-            <label>Nombre del Depositante</label>
-            <input id="male" class="w3-input" type="text"  ng-model="remesa.nombreCliente"  required >
-            <label>Email del Depositante</label>
-            <input id="male" class="w3-input" type="email" ng-model="remesa.correoCliente" required>
-            <label>Teléfono del Depositante</label>
-            <input id="male" class="w3-input" type="text" ng-model="remesa.telefonoCliente" required>
-        </p>
-        <p id="4" class="form-group">
+        <p id="1" class="form-group">
+            <button style="color:white;font-weight:bolder"  ng-click="gotoForm('Form2')" class="btn btn-success pull-right">Siguente</button>
            
-            <input id="male" class="btn btn-lg pull-right" type="submit" ng-click="enviarRemesa($event)" value="Enviar">
         </p>
+        
+
+     
     </form>
     <script>
-     
+        document.getElementById('montox').addEventListener('keydown', function (e) {
+            if (e.which === 38 || e.which === 40) {
+                e.preventDefault();
+            }
+        });
 
     </script>
+
+    <style>
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+    </style>
 </body>

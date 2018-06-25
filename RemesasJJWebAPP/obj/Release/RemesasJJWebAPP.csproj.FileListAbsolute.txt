@@ -33,7 +33,6 @@ c:\users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWeb
 c:\users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Webpages.Razor.xml
 c:\users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Helpers.xml
 c:\users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Mvc.xml
-c:\users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.csprojResolveAssemblyReference.cache
 c:\users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.dll
 c:\users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.pdb
 c:\Users\user\Documents\Visual Studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\EntityFramework.SqlServer.dll
@@ -88,3 +87,4 @@ C:\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.csprojResolveAsse
 C:\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.dll
 C:\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.pdb
 C:\RemesasJJWebAPP\RemesasJJWebAPP\bin\RemesasJJ.dll
+C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\obj\Release\RemesasJJWebAPP.csprojResolveAssemblyReference.cache

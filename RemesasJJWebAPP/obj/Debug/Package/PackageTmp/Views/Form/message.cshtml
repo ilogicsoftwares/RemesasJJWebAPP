@@ -13,11 +13,11 @@
     <div class="jumbotron"> 
 <h1 style="color:darkseagreen">ENVIO REALIZADO</h1>
 <p style="text-align:justify">
-    Hola <strong style="color:darkseagreen">{{user.nombre}}</strong>, se ha realizado el envió de la información sin problemas, El Código de tu Remesa es <strong style="color:darkseagreen">#{{user.codigo}}</strong>, usa este número para solventar cualquier problema que pudiera presentarse. De igual forma te hemos enviado un correo electrónico con todos los datos de la transacción.
+    Hola <strong style="color:darkseagreen">{{user.nombre}}</strong>, se ha realizado el envió de la información sin problemas, El Código de tu Remesa es <strong style="color:darkseagreen">#{{user.codigo}}</strong>, usa este número para solventar cualquier problema que pudiera presentarse. De igual forma te hemos enviado un correo electrónico con todos los datos de la transacción(<strong style="color:red">Recuerda revisar tu bandeja de Spam</strong>).
     Los tiempos de entrega de la remesa pueden variar de acuerdo a la hora y el día que se realice la transacción. Trabajamos eficientemente para que estos tiempos sean los más cortos posible.
     Estaremos informando a tu correo electrónico cuando la transacción se realice.
 </p>
-        <p><a href="" class="btn btn-lg btn-info pull-right" ui-sref="Form" role="button">Enviar</a></p>
+        <p><a href="" class="btn btn-lg btn-info pull-right" ng-click="goToNew('/')" role="button">Enviar</a></p>
 
     </div>
 </body>

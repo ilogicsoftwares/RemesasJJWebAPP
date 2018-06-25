@@ -95,6 +95,23 @@ namespace RemesasJJWebAPP.Controllers
         [HttpPost]
         public async Task<JsonResult> Enviar(remesas remesa, string file)
         {
+
+            if (remesa.id != 0)
+            {
+                try
+                {
+                    remesa.file = file;
+                    remex.Update(remesa);
+                    remex.Save();
+                }catch(Exception ex)
+                {
+                    return Json(new { message = ex.Message, estatus = false });
+                }
+               
+
+            }
+            else { 
+
             try
             {
                 remesa.file = file;
@@ -131,10 +148,49 @@ namespace RemesasJJWebAPP.Controllers
             }
             catch (Exception ex)
             {
+                return Json(new { message = ex.Message, estatus = false,  });
+            }
+            }
+            return Json( new {estatus=true, nombre=remesa.nombreCliente,codigo=remesa.id});
+        }
+        [HttpPost]
+        public async Task<JsonResult> EnviarProc(int remesaID)
+        {
+            var remesa = remex.GetByID(remesaID);
+            try
+            {
+               
+                var bacon = bancos.GetByID((int)remesa.bancoBenef);
+
+
+                var content = "<div>" +
+                               "<h1 style = 'color:darkseagreen'> ENVIO PROCESADO</h1>" +
+                               "<p style = 'text-align:justify'>" +
+                               "Hola <strong style='color:darkseagreen'>" +
+                               remesa.nombreCliente +
+                               "</strong>, se ha Procesado tu Remesa, El Código de tu Remesa es " +
+                               "<strong style='color:darkseagreen'>#" + remesa.id + "</strong>"+
+                               "<p>Beneficiario:</p>" + "<strong>" + remesa.nombreBenef + "</strong>" +
+                               "<p>Cedula:</p>" + "<strong>" + remesa.cedulaBenef + "</strong>" +
+                               "<p>Banco:</p>" + "<strong>" + bacon.nombre + "</strong>" +
+                               "<p>Cuenta:</p>" + "<strong>" + remesa.cuentaBenef + "</strong>" +
+                               "<p>Monto:</p>" + "<strong>" + string.Format("{0:N}", remesa.montoDeposito) + "</strong>" +
+                               "<p>Total Enviado:</p>" + "<strong>" + string.Format("{0:N}", remesa.montoDestino) + "</strong>" +
+                               "<p>Imagen del Reporte:</p>" + "<img src ='http://www.remesasjj.com/content/uploads/" + remesa.imgTrans + "'>" + 
+                                  "<a href='http://www.remesasjj.com/content/uploads/" + remesa.imgTrans + "'>Imagen</a> " +
+
+
+                               "</div>";
+
+                JsonResult x = await SendMail("Remesa Procesada", "remesasjj@remesasjj.com", "Remesasjj", remesa.correoCliente, remesa.nombreCliente, content);
+
+            }
+            catch (Exception ex)
+            {
                 return Json(new { message = ex.Message, estatus = false });
             }
-            
-            return Json( new {estatus=true, nombre=remesa.nombreCliente,codigo=remesa.id});
+
+            return Json(new { estatus = true, nombre = remesa.nombreCliente, codigo = remesa.id });
         }
 
         [HttpPost]

@@ -22,6 +22,7 @@ namespace RemesasJJWebAPP.Controllers
             ViewBag.remesas = JsonConvert.SerializeObject(remesax);
             return View();
         }
+       
 
         // GET: Home/Details/5
         public ActionResult Details(int id)

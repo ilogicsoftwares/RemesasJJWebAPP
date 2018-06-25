@@ -35,7 +35,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" class="no-print">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
@@ -49,13 +49,13 @@
                     <a ui-sref="ActRemesa">Reportes-Pagos</a>
                 </li>
                 <li>
-                    <a ui-sref="Form" href="#">Remesas</a>
+                    <a ng-click="NewRemesa()" href="#">Remesas</a>
                 </li>
                 <li>
-                    <a href="#">Saldos</a>
+                    <a ui-sref="Bancos">Bancos</a>
                 </li>
                 <li>
-                    <a href="#">Configuración</a>
+                    <a href="#">Usuarios</a>
                 </li>
                 
                 <li>

@@ -13,20 +13,29 @@
 
     <title>RemesasJJ - Admin</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="~/Template2/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+   
     <!-- Custom styles for this template -->
     <link href="~/Template2/css/simple-sidebar.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+
+    <link href="~/Content/w3.css" rel="stylesheet" />
+    <link href="~/Content/w3-theme-blue.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
 </head>
 
 <body ng-app="RemesasApp" ng-controller="adminController">
-
+    <style>
+        @@media print {
+            .no-print, .no-print * {
+                display: none !important;
+            }
+        }
+    </style>
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
+        <div id="sidebar-wrapper" class="no-print">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                     <a href="#">
@@ -37,13 +46,13 @@
                     <a ui-sref="ActCambio">Actualizar Cambio</a>
                 </li>
                 <li>
-                    <a href="#">Reportes-Pagos</a>
+                    <a ui-sref="ActRemesa">Reportes-Pagos</a>
                 </li>
                 <li>
-                    <a href="#">Remesas</a>
+                    <a ng-click="NewRemesa()" href="#">Remesas</a>
                 </li>
                 <li>
-                    <a href="#">Saldos</a>
+                    <a ui-sref="Bancos">Bancos</a>
                 </li>
                 <li>
                     <a href="#">Configuración</a>
@@ -56,11 +65,11 @@
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
-        <a style="background-color:black;border:0px;margin-left:-1px"  href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Menú</a>
+        <a style="background-color:black;border:0px;margin-left:-1px;color:white"  href="#menu-toggle" class="btn btn-secondary no-print" id="menu-toggle">Menú</a>
         
         
         <div id="page-content-wrapper">
-            <div class="container-fluid">
+            <div>
             <ui-view>
             
             </ui-view>    
@@ -73,13 +82,16 @@
     <!-- /#wrapper -->
     <!-- Bootstrap core JavaScript -->
     <script src="~/Template2/vendor/jquery/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="~/Template2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/scripts/angular.js"></script>
     <script src="~/scripts/AngularExtensions/angular-ui-notification.js"></script>
     <script src="~/scripts/Angular-Ui-Route.js"></script>
-    <script src="~/scripts/AngularExtensions/angularConfig.js"></script>
+    <script src="~/scripts/AngularExtensions/dirPagination.js"></script>
     <script src="~/scripts/AngularExtensions/angularServices.js"></script>
+    <script src="~/scripts/AngularExtensions/angularConfig.js"></script>
     <script src="~/scripts/AngularExtensions/angularDirectives.js"></script>
+    <script src="~/scripts/AngularExtensions/angularFilters.js"></script>
     <script src="~/scripts/AngularExtensions/angularControllers.js"></script>
     <script src="~/scripts/angular-route.js"></script>
     <!-- Menu Toggle Script -->

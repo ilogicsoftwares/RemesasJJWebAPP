@@ -6,18 +6,26 @@
 <div style="display:grid">
    
      <div class="form-group row">
-         <div class="col-sm-6">
+         <div class="col-sm-3">
              <div class="input-group">
                  <label for="inputFilter" class="col-form-label">Buscar:</label>
                  <input class="form-control" type="text" ng-change="filtrar(filtro)" ng-model="filtro" id="inputFilter" />
                 
              </div>
            </div>
+         <div class="col-sm-3">
+             <div class="input-group">
+                 <label for="inputFilter" class="col-form-label">Fecha:</label>
+                 <input class="form-control" type="date" value="{{fechaVal}}" ng-change="filtrar(fecha,'fecha')" ng-model="fecha" id="inputFilter" />
+
+             </div>
+         </div>
          <div class="col-sm-6" style="margin-top:28px;">
-             <a  class="btn btn-default btn-sm pull-right" ui-sref="ReporteGeneral" value="+" style="font-weight:bold;font-size:medium" title="Imprimir">
+             <a  class="btn btn-default btn-sm pull-right" ng-click="show('id05')" value="+" style="font-weight:bold;font-size:medium" title="Imprimir">
                  <span class="glyphicon glyphicon-print"></span>
              </a>
              <div class="form-group pull-right" style="margin-right:10px;margin-top:5px">
+                 <label class="radio-inline"><input type="radio" ng-model="estatus" value="" name="optradio">Todas</label>
                  <label class="radio-inline"><input type="radio" ng-model="estatus" value="Recibida" name="optradio">Recibidas</label>
                  <label class="radio-inline"><input type="radio" ng-model="estatus" value="Procesada" name="optradio">Procesadas</label>
                  <label class="radio-inline"><input type="radio" ng-model="estatus" value="Anulada" name="optradio">Anuladas</label>
@@ -91,6 +99,12 @@
                                          <option ng-selected="selected==item.id" ng-repeat="item in bancos" value="{{item.id}}">{{item.nombre}}  {{item.cuenta}}</option>
                         </select>
                     </div>
+                    <div class="form-inline">
+                        Imagen<input id="file" ng-disabled="Disable" class="form-control" type="file" ng-model="fileTranfer" onchange="angular.element(this).scope().add()" />
+                    </div>
+                    <p style="color:red">{{ImgError}}</p>
+                    <div  ng-show="loading"><p>Imagen Cargada</p></div>
+                    <img id="fileimage" class="img-responsive" width="35"  src="~/Content/Uploads/{{newFileName}}" />
                     <button type="submit" ng-disabled="Disable" ng-click="modal.showModal('id04')" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
                     <button ng-disabled="Disable" ng-click="modal.showModal('id03')" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
                 </form>
@@ -138,3 +152,41 @@
     </div>
 
 </div>
+<div id="id05" class="w3-modal">
+    <div class="w3-modal-content w3-container" style="width:800px">
+        <div>
+            <span ng-click="close('id05')" class="w3-button w3-display-topright">&times;</span>
+            
+                <h3>Indique la Cantidad de venta ($):</h3>
+
+                <input style="max-width:500px" type="text" class="form-control" ng-model="ReporteGeneral.montoVenta"/>
+          
+                <h3>Indique el Precio de la venta (Bs.):</h3>
+                <input style="max-width:500px" type="text" class="form-control" ng-model="ReporteGeneral.precioVenta" />
+            
+         </div>
+        <button ng-click="modal.closeModal('id05')" class="w3-btn w3-margin-top w3-border  w3-border-blue w3-round w3-tiny w3-right">Cancelar</button>
+        <button ng-click="GeneralReport()" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Procesar</button>
+    </div>
+
+</div>
+<style>
+    .loader {
+        border: 5px solid #f3f3f3; /* Light grey */
+        border-top: 5px solid green; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+    }
+
+    @@keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>

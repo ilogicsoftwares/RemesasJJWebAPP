@@ -44,13 +44,40 @@ namespace RemesasJJWebAPP.Controllers
                 tipo=x.remesatype1.descripcion,
                 x.ticketSerial,
                 x.idtransf,
-                x.bancoDeposito
+                x.bancoDeposito,
+                x.BancoTrans
 
             });
              return Json(remex);
         }
+        public JsonResult newRemesa(int id)
+        {
+            if (id == 0)
+            {
+                return Json(remesax.New());
+
+            }
+            remesax.context.Configuration.ProxyCreationEnabled = false;
+            return Json(remesax.GetByID(id));
+
+        }
 
         // GET: Remesas/Create
+        public JsonResult CheckSerial(string ticketId)
+        {
+            var resultado = true;
+            var exist= remesax.getByTicketId(ticketId);
+            if (exist != null)
+                resultado = false;
+
+            return Json(new {state=resultado});
+        }
+        public JsonResult checkAnulado(int id)
+        {
+            remesax.context.Configuration.ProxyCreationEnabled = false;
+            var exist = remesax.GetByID(id);
+            return Json(exist);
+        }
         public JsonResult BancosEmpre()
         {
             var bancos = banco.GetAllEmpre().Select(x=>new {
@@ -60,26 +87,45 @@ namespace RemesasJJWebAPP.Controllers
             });
             return Json(bancos);
         }
+        public JsonResult BancosTrans()
+        {
+            var bancos = remesax.context.bancostrans.Select(x => new {
+                nombre = x.nombre,
+                id = x.id,
+                cuenta = x.cuentaNumero
+            });
+            return Json(bancos);
+        }
 
         // POST: Remesas/Create
         [HttpPost]
-        public JsonResult ProcessRemesa(int id, string idDeposito, string idTransf, int idBanco)
+        public JsonResult ProcessRemesa(int id, string idDeposito, string idTransf, int idBanco, int BancoTrans, string imgName="")
         {
-          var process= remesax.processRemesa(id, idDeposito, idTransf, idBanco);
+           var monedaId= banco.GetEmpreByID(idBanco).monedaID;
+           var remesaMoneda = remesax.GetByID(id).moneda.id;
+
+            if (monedaId != remesaMoneda)
+            {
+                return Json(new {msg="La moneda de deposito no conincide con el banco Seleccionado",state=false});
+            }
+
+          var process= remesax.processRemesa(id, idDeposito, idTransf, idBanco,BancoTrans);
           var nuevoStatus=  remesax.GetByID(id);
+          nuevoStatus.imgTrans = imgName;
+          remesax.Update(nuevoStatus);
+          remesax.Save();
           return Json(new {state=process,newEstatus=nuevoStatus.estatus1.estatus1});
         }
 
         // GET: Remesas/Edit/5
         [HttpPost]
-        public JsonResult Anular(int id)
+        public JsonResult Anular(int id, string anulaDetail, bool sendMail=false)
         {
             try
             {
                 var remesita = remesax.GetByID(id);
-                if (remesita.estatus == 2)
-                    return Json(new {state=false});
                 remesita.estatus = 3;
+                remesita.unulaDetail = anulaDetail;
                 remesax.Update(remesita);
                 remesax.Save();
                 return Json(new { state = true,newStatus=remesita.estatus1.estatus1});

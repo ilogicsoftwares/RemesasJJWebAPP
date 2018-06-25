@@ -20,6 +20,7 @@ namespace RemesasJJWebAPP.Controllers
         // GET: Cambios/Details/5
         public JsonResult Get()
         {
+            cambios.context.Configuration.ProxyCreationEnabled = false;
             var cambiox= cambios.GetActualChange();
             return Json(cambiox,JsonRequestBehavior.AllowGet);
         }
