@@ -381,6 +381,13 @@
 
     }
 
+    $scope.enviarEmail = function (id) {
+        Request.make("POST", "/form/EnviarProc/", { remesaID: id }).then(function (data) {
+            window.alert("Correo Enviado");
+        });
+
+    }
+
     $scope.GeneralReport = function () {
         $state.go("ReporteGeneral");
     }

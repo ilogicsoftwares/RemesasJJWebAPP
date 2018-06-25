@@ -130,6 +130,7 @@
                         <p style="color:red">{{ImgError}}</p>
                         <div ng-show="loading"><p>Imagen Cargada</p></div>
                         <img id="fileimage" class="img-responsive" width="35" src="~/Content/Uploads/{{newFileName}}" />
+                        <button type="button" ng-click="enviarEmail(ActiveRemesa.id)" class="w3-btn w3-margin-top w3-margin-left w3-border w3-border-blue w3-round w3-tiny w3-right">Enviar Email</button>
                         <button type="submit" ng-disabled="Disable" ng-click="modal.showModal('id04')" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Procesar</button>
                         <button ng-click="checkAnulado(ActiveRemesa.id)" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Anular</button>
                     </div>
