@@ -631,6 +631,51 @@
 
     }
 
+}).controller("adminUsuariosController", function ($scope, $sce, $location, Request, Notify, $state) {
+    Request.make("POST", "/admin/getusuarios/").then(function (data) {
+
+        $scope.usuarios = data;
+
+    });
+
+    $scope.enableFuncs = function () {
+        Request.make("POST", "/admin/getusuarios/").then(function (data) {
+
+            $scope.usuarios = data;
+
+        });
+    }
+    $scope.btnEstatus = "Guardar";
+
+    $scope.EliminarUsuario = function (item) {
+        Request.make("POST", "/admin/EliminarUser/", { user: item }).then(function (data) {
+            $scope.enableFuncs();
+        });
+
+    }
+
+    $scope.cancelUser = function () {
+        $scope.user = null;
+       
+    }
+
+    $scope.saveUser = function (event) {
+
+        if (!$scope.form1.$valid) {
+            window.alert("Complete todos los datos");
+            return;
+        }
+            
+
+        event.preventDefault();
+        Request.make("POST", "/admin/saveUser/", { user: $scope.user }).then(function (data) {
+      
+            $scope.enableFuncs();
+            $scope.cancelUser();
+           
+        });
+    }
+
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {
 
 

@@ -17,6 +17,7 @@ namespace RemesasJJWebAPP.Controllers
         // GET: Admin
         public Change change = new Change();
         public Bancos Bancosx = new Bancos();
+        public Usuarios usuariosx = new Usuarios();
         public ActionResult Index()
         {
             return View();
@@ -94,6 +95,65 @@ namespace RemesasJJWebAPP.Controllers
             });
 
             return Json(moneda);
+
+        }
+        [HttpPost]
+        public JsonResult Getusuarios()
+        {
+            var users = usuariosx.GetAll().Select(x => new {
+               x.id,
+               x.nombre,
+               x.correo,
+               x.nombrex,
+               x.dni
+
+            });
+
+            return Json(users);
+
+        }
+        [HttpPost]
+        public JsonResult saveUser(users user)
+        {
+            try
+            {
+                if (user.id == 0)
+                {
+                    user.fecha = DateTime.Now;
+                    usuariosx.Insert(user);
+                    
+                }
+                else
+                {
+                    usuariosx.Update(user);
+                }
+                usuariosx.Save();
+
+            }
+            catch(Exception ex)
+            {
+                return Json(new { error = true });
+            }
+
+            return Json(new {estatus=true});
+
+        }
+
+        [HttpPost]
+        public JsonResult EliminarUser(users user)
+        {
+            try
+            {
+                usuariosx.Delete(user.id);
+                usuariosx.Save();
+
+            }
+            catch
+            {
+                return Json(new { error = true });
+            }
+
+            return Json(new { estatus = true });
 
         }
         [HttpPost]
@@ -225,6 +285,12 @@ namespace RemesasJJWebAPP.Controllers
         }
 
         // POST: Admin/Create
+        public ActionResult usuarios()
+        {
+
+            return View();
+
+        }
 
         public ActionResult Homes()
         {

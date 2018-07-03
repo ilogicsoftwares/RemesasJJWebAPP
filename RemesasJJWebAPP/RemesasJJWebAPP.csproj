@@ -347,6 +347,7 @@
     <Content Include="Views\FormOffice\message.cshtml" />
     <Content Include="Views\FormOffice\remesasReport.cshtml" />
     <Content Include="Views\Admin\Bancos.cshtml" />
+    <Content Include="Views\Admin\usuarios.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

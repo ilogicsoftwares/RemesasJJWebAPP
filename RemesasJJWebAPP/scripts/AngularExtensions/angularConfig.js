@@ -50,6 +50,16 @@
               }
           }
       }).state({
+          name: "Usuarios",
+          url: "/admin/usuarios",
+          templateUrl: "/admin/usuarios",
+          controller: "adminUsuariosController",
+          resolve: {
+              clientes: function () {
+                  $("#wrapper").toggleClass("toggled");
+              }
+          }
+      }).state({
           name: "FormOffice",
           templateUrl: "/formOffice/index",
           controller: "FormController",
