@@ -55,16 +55,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/28/2018 13:38:30</publishTime>
     </File>
     <File Include="bin/RemesasJJ.dll">
-      <publishTime>06/24/2018 22:34:11</publishTime>
+      <publishTime>07/09/2018 01:37:49</publishTime>
     </File>
     <File Include="bin/RemesasJJ.pdb">
-      <publishTime>06/24/2018 22:34:11</publishTime>
+      <publishTime>07/09/2018 01:37:49</publishTime>
     </File>
     <File Include="bin/RemesasJJWebAPP.dll">
-      <publishTime>06/24/2018 22:34:19</publishTime>
+      <publishTime>07/09/2018 04:42:01</publishTime>
     </File>
     <File Include="bin/RemesasJJWebAPP.pdb">
-      <publishTime>06/24/2018 22:34:19</publishTime>
+      <publishTime>07/09/2018 04:42:01</publishTime>
     </File>
     <File Include="bin/SendGrid.dll">
       <publishTime>04/28/2018 13:38:30</publishTime>
@@ -113,6 +113,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Content/w3.css">
       <publishTime>01/26/2018 02:03:30</publishTime>
+    </File>
+    <File Include="Controllers/AdminController.cs">
+      <publishTime>07/09/2018 04:37:52</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>04/28/2018 13:38:30</publishTime>
@@ -265,10 +268,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/17/2018 20:34:30</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularConfig.js">
-      <publishTime>06/10/2018 15:50:29</publishTime>
+      <publishTime>07/08/2018 15:19:33</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularControllers.js">
-      <publishTime>06/24/2018 22:05:46</publishTime>
+      <publishTime>07/09/2018 00:54:39</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularDirectives.js">
       <publishTime>04/28/2018 13:38:30</publishTime>
@@ -277,7 +280,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/28/2018 15:50:34</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularServices.js">
-      <publishTime>04/16/2018 01:29:51</publishTime>
+      <publishTime>07/09/2018 02:20:51</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/dirPagination.js">
       <publishTime>04/14/2018 21:30:58</publishTime>
@@ -544,19 +547,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/28/2018 13:38:30</publishTime>
     </File>
     <File Include="Views/Admin/Bancos.cshtml">
-      <publishTime>06/10/2018 23:30:37</publishTime>
+      <publishTime>07/09/2018 03:17:56</publishTime>
     </File>
     <File Include="Views/Admin/Cambio.cshtml">
       <publishTime>04/14/2018 22:59:07</publishTime>
     </File>
     <File Include="Views/Admin/Desktop.cshtml">
-      <publishTime>06/24/2018 16:40:19</publishTime>
+      <publishTime>07/08/2018 14:50:52</publishTime>
     </File>
     <File Include="Views/Admin/Homes.cshtml">
       <publishTime>04/28/2018 13:38:30</publishTime>
     </File>
     <File Include="Views/Admin/Index.cshtml">
       <publishTime>04/30/2018 13:36:46</publishTime>
+    </File>
+    <File Include="Views/Admin/Roles.cshtml">
+      <publishTime>07/08/2018 23:49:53</publishTime>
+    </File>
+    <File Include="Views/Admin/usuarios.cshtml">
+      <publishTime>07/09/2018 03:33:05</publishTime>
     </File>
     <File Include="Views/Form/Error.cshtml">
       <publishTime>06/11/2018 02:01:31</publishTime>
@@ -606,8 +615,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Reports/GeneralRemesas.cshtml">
       <publishTime>06/05/2018 16:49:40</publishTime>
     </File>
+    <File Include="Views/Secure/notAuth.cshtml">
+      <publishTime>07/09/2018 03:06:18</publishTime>
+    </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/28/2018 13:38:30</publishTime>
+      <publishTime>07/09/2018 01:02:24</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>04/28/2018 13:38:30</publishTime>

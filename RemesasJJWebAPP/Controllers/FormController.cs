@@ -1,5 +1,6 @@
 ﻿using RemesasJJ;
 using RemesasJJ.Logics;
+using RemesasJJWebAPP.Filters;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System;
@@ -20,7 +21,7 @@ namespace RemesasJJWebAPP.Controllers
         Bancos bancos = new Bancos();
         Change change = new Change();
         RemesasJJ.Logics.SendGrid sendMail = new RemesasJJ.Logics.SendGrid();
-
+       
         public ActionResult Index()
         {
             return View();

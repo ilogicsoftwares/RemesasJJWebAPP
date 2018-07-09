@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RemesasJJ;
 using RemesasJJ.Logics;
+using RemesasJJWebAPP.Filters;
 using RemesasJJWebAPP.Models;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,18 @@ namespace RemesasJJWebAPP.Controllers
         public Change change = new Change();
         public Bancos Bancosx = new Bancos();
         public Usuarios usuariosx = new Usuarios();
+        
         public ActionResult Index()
         {
             return View();
         }
+        [CustAuthFilter]
         public ActionResult Bancos()
+        {
+            return View();
+        }
+        [CustAuthFilter]
+        public ActionResult Roles()
         {
             return View();
         }
@@ -34,6 +42,7 @@ namespace RemesasJJWebAPP.Controllers
             ViewBag.cambio = JsonConvert.SerializeObject(new cambio()); 
             return View();
         }
+        [CustAuthFilter]
         [HttpPost]
         public JsonResult saveChange(cambio cambio)
         {
@@ -49,6 +58,7 @@ namespace RemesasJJWebAPP.Controllers
             return Json(new { estatus = true });
 
         }
+        
         [HttpPost]
         public JsonResult GetBancosEmpre(int bancoType)
         {
@@ -85,6 +95,7 @@ namespace RemesasJJWebAPP.Controllers
             return Json(moneda);
 
         }
+       
         [HttpPost]
         public JsonResult GetBancos()
         {
@@ -98,14 +109,88 @@ namespace RemesasJJWebAPP.Controllers
 
         }
         [HttpPost]
+        public JsonResult GetAccesos()
+        {
+            var data = Bancosx.context.acesos.ToList().Select(x => new {
+                id = x.id,
+                nombre = x.nombre,
+                active = x.active
+            });
+
+            return Json(data);
+
+        }
+        [HttpPost]
+        public JsonResult getAllRoles()
+        {
+            var data = Bancosx.context.roles.ToList().Select(x => new {
+                id = x.id,
+                name = x.name,
+                
+            });
+
+            return Json(data);
+
+        }
+        [HttpPost]
+        public JsonResult deleteRoles(int id)
+        {
+
+            try
+            {
+                var roleDelete = Bancosx.context.roles.FirstOrDefault(x => x.id == id);
+                Bancosx.context.roles.Remove(roleDelete);
+                Bancosx.context.SaveChanges();
+
+            }catch (Exception ex)
+            {
+                return Json(new { error = true });
+            }
+
+            return Json(new {estatus=true});
+
+        }
+        [HttpPost]
+        public JsonResult SaveRoles(List<acesos> accesos,roles rol)
+        {
+            try
+            {
+                Bancosx.context.roles.Add(rol);
+                Bancosx.context.SaveChanges();
+
+
+                foreach (var item in accesos)
+                {
+                    if (item.active == 1)
+                    {
+                        roleacess rolito = new roleacess();
+                        rolito.roleid = rol.id;
+                        rolito.acesosid = item.id;
+
+                        Bancosx.context.roleacess.Add(rolito);
+
+                    }
+
+                }
+                Bancosx.context.SaveChanges();
+            }catch (Exception ex)
+            {
+                return Json(new { error = true, estatus = false });
+            }
+
+          
+            return Json(new { estatus = true });
+
+        }
+        [HttpPost]
         public JsonResult Getusuarios()
         {
-            var users = usuariosx.GetAll().Select(x => new {
+            var users = usuariosx.GetAll().ToList().Select(x => new {
                x.id,
                x.nombre,
                x.correo,
                x.nombrex,
-               x.dni
+               rolName=x.roles==null ?"":x.roles.name
 
             });
 
@@ -156,6 +241,7 @@ namespace RemesasJJWebAPP.Controllers
             return Json(new { estatus = true });
 
         }
+        [CustAuthFilter]
         [HttpPost]
         public JsonResult SaveBancos(bancosempre banco)
         {
@@ -205,6 +291,7 @@ namespace RemesasJJWebAPP.Controllers
             return Json(new { estatus = true });
 
         }
+        [CustAuthFilter]
         [HttpPost]
         public JsonResult DelBanco(bancosempre banco)
         {
@@ -264,14 +351,18 @@ namespace RemesasJJWebAPP.Controllers
         [HttpPost]
         public ActionResult Login(User usuario)
         {
-            if (usuario.userName=="admin" && usuario.password == "admin1721")
+
+            var currentUser=usuariosx.context.users.FirstOrDefault(x => x.nombre == usuario.userName);
+
+            if (currentUser!=null && usuario.password.Equals(currentUser.clave))
             {
-                FormsAuthentication.SetAuthCookie(usuario.userName, true);
+                FormsAuthentication.SetAuthCookie(currentUser.id.ToString(), true);
+                return Json(new { estatus = true });
             }
 
-            
 
-            return Json(new {estatus=true});
+            return Json(new { estatus = false });
+
         }
         public ActionResult Logout()
         {
@@ -285,6 +376,7 @@ namespace RemesasJJWebAPP.Controllers
         }
 
         // POST: Admin/Create
+        [CustAuthFilter]
         public ActionResult usuarios()
         {
 
@@ -300,6 +392,7 @@ namespace RemesasJJWebAPP.Controllers
         }
 
         // GET: Admin/Edit/5
+        [CustAuthFilter]
         public ActionResult Cambio()
         {
             cambio cambio = new cambio();
@@ -310,26 +403,8 @@ namespace RemesasJJWebAPP.Controllers
         // POST: Admin/Edit/5
         
 
-        // GET: Admin/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
 
         // POST: Admin/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+      
     }
 }

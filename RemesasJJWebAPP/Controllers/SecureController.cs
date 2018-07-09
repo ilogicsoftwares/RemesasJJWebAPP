@@ -3,56 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using RemesasJJ.Logics;
-using RemesasJJ;
-using RemesasJJWebAPP.Filters;
 
 namespace RemesasJJWebAPP.Controllers
 {
-    public class CambiosController : Controller
+    public class SecureController : Controller
     {
-        // GET: Cambios
-        public Change cambios = new Change();
-        public ActionResult Index()
+        // GET: Secure
+        public ActionResult notAuth()
         {
             return View();
         }
 
-        // GET: Cambios/Details/5
-        public JsonResult Get()
+        // GET: Secure/Details/5
+        public ActionResult Details(int id)
         {
-            cambios.context.Configuration.ProxyCreationEnabled = false;
-            var cambiox= cambios.GetActualChange();
-            return Json(cambiox,JsonRequestBehavior.AllowGet);
+            return View();
         }
 
-        // GET: Cambios/Create
-        [CustAuthFilter]
+        // GET: Secure/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Secure/Create
         [HttpPost]
-        public JsonResult Create(cambio cambio)
+        public ActionResult Create(FormCollection collection)
         {
-            try {
-                cambios.Insert(cambio);
-                cambios.Save();
-                return Json(new { estatus = true });
-            }catch(Exception ex)
+            try
             {
-            
-                return Json(new { estatus = false});
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
             }
-            
+            catch
+            {
+                return View();
+            }
         }
 
-        // POST: Cambios/Create
-      
-
-        // GET: Cambios/Edit/5
+        // GET: Secure/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Cambios/Edit/5
+        // POST: Secure/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -68,13 +64,13 @@ namespace RemesasJJWebAPP.Controllers
             }
         }
 
-        // GET: Cambios/Delete/5
+        // GET: Secure/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Cambios/Delete/5
+        // POST: Secure/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

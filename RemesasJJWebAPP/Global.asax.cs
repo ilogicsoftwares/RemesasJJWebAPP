@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RemesasJJ;
+using RemesasJJ.Logics;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -29,6 +31,27 @@ namespace RemesasJJWebAPP
                 }
             }
         }
+    }
+    public class MenuRoles : Controller
+    {
+        Remesa remex = new Remesa();
+        public bool Testrole(int? rolid, string ActionNamex)
+        {
+
+
+            var allAcces = remex.context.roleacess.Include("acesos").Where(x=>x.roleid==rolid).ToList();
+
+
+                var busca = allAcces.FirstOrDefault(x=>x.acesos.link == ActionNamex);
+                if (busca!= null)
+                {
+                    return true;
+                }
+           
+
+            return false;
+        }
+
     }
     public class MvcApplication : System.Web.HttpApplication
     {

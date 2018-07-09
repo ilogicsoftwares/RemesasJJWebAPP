@@ -69,7 +69,9 @@
             if (data.estatus) {
 
                 window.location.href = "/admin/desktop";
-            }
+            } else {
+                window.alert("Usuario o Contraseña Incorrecta");
+}
         })
 
     }
@@ -78,8 +80,53 @@
     
 
 }).controller("adminHomeController", function ($scope, $sce, $location, Request, Notify, $state) {
+
+
+}).controller("adminRolesController", function ($scope, $sce, $location, Request, Notify, $state) {
+    $scope.btnEstatus = "Guardar";
+    $scope.accesos = {};
    
 
+
+    $scope.cancelRoles = function () {
+         $scope.newRole = "";
+    }
+    $scope.Actualizar = function () {
+
+        Request.make("POST", "/admin/GetAccesos/").then(function (data) {
+            $scope.accesos = data;
+            Request.make("POST", "/admin/getAllRoles/").then(function (data) {
+                $scope.roles = data;
+                $scope.cancelRoles();
+            });
+        });
+       
+    }
+    $scope.Actualizar();
+    
+   
+
+    
+
+    $scope.saveRole = function (event) {
+        if (!$scope.form1.$valid)
+            return;
+        event.preventDefault();
+        Request.make("POST", "/admin/saveroles/", { accesos: $scope.accesos, rol: { name: $scope.newRole } }).then(function () {
+            $scope.Actualizar();
+        });
+
+    }
+
+    $scope.deleRole = function (id) {
+        Request.make("POST", "/admin/deleteroles/", { id: id }).then(function () {
+            $scope.Actualizar();
+
+        });
+    }
+
+        
+    $scope.deleteRole = "";
 
 }).controller("ReportGController", function ($scope, $sce, $location, Request, Notify, $state,bancos) {
 
@@ -629,6 +676,57 @@
             $scope.ImgError = "Error al subir el Archivo";
         })
 
+    }
+
+}).controller("adminUsuariosController", function ($scope, $sce, $location, Request, Notify, $state) {
+    Request.make("POST", "/admin/getusuarios/").then(function (data) {
+
+        $scope.usuarios = data;
+
+    });
+    Request.make("POST", "/admin/getAllRoles/").then(function (data) {
+
+        $scope.roles = data;
+
+    });
+
+    $scope.enableFuncs = function () {
+        Request.make("POST", "/admin/getusuarios/").then(function (data) {
+
+            $scope.usuarios = data;
+
+        });
+    }
+    $scope.btnEstatus = "Guardar";
+
+    $scope.EliminarUsuario = function (item) {
+        Request.make("POST", "/admin/EliminarUser/", { user: item }).then(function (data) {
+            $scope.enableFuncs();
+        });
+
+    }
+
+    $scope.cancelUser = function () {
+        $scope.user = null;
+       
+    }
+
+    $scope.saveUser = function (event) {
+
+        if (!$scope.form1.$valid) {
+            window.alert("Complete todos los datos");
+            return;
+        }
+            
+
+        event.preventDefault();
+        $scope.user.roleid = $scope.rol.id;
+        Request.make("POST", "/admin/saveUser/", { user: $scope.user }).then(function (data) {
+      
+            $scope.enableFuncs();
+            $scope.cancelUser();
+           
+        });
     }
 
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {

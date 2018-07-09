@@ -12,8 +12,13 @@
         })
 .then(function (response) {
     if (response.data.error) {
-
-        window.alert("Error al procesar la solicitud...");
+        if (response.data.errorMsg != "" && response.data.errorMsg != null)
+        {
+            window.alert(response.data.errorMsg);
+        } else {
+            window.alert("Error al procesar la solicitud...");
+        }
+      
     }
  
     def.resolve(response.data);

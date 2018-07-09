@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using RemesasJJWebAPP.Filters;
+
 namespace RemesasJJWebAPP.Controllers
 {
     public class FormOfficeController : Controller
@@ -20,7 +22,7 @@ namespace RemesasJJWebAPP.Controllers
         Bancos bancos = new Bancos();
         Change change = new Change();
         RemesasJJ.Logics.SendGrid sendMail = new RemesasJJ.Logics.SendGrid();
-
+        [CustAuthFilter]
         public ActionResult Index()
         {
             return View();

@@ -1,5 +1,6 @@
 ﻿using RemesasJJ;
 using RemesasJJ.Logics;
+using RemesasJJWebAPP.Filters;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,6 +15,7 @@ namespace RemesasJJWebAPP.Controllers
         // GET: Remesas
         Remesa remesax = new Remesa();
         Bancos banco = new Bancos();
+        [CustAuthFilter]
         public ActionResult Index()
         {
             return View();
@@ -50,6 +52,7 @@ namespace RemesasJJWebAPP.Controllers
             });
              return Json(remex);
         }
+        [CustAuthFilter]
         public JsonResult newRemesa(int id)
         {
             if (id == 0)
@@ -118,6 +121,7 @@ namespace RemesasJJWebAPP.Controllers
         }
 
         // GET: Remesas/Edit/5
+        [CustAuthFilter]
         [HttpPost]
         public JsonResult Anular(int id, string anulaDetail, bool sendMail=false)
         {
