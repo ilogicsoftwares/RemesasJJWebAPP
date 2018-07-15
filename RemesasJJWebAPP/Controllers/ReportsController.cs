@@ -32,12 +32,12 @@ namespace RemesasJJWebAPP.Controllers
             var remesas=remesax.GetByFecha(xFecha);
             var filter = remesas.Where(x => x.estatus1.id < 3).Select(x => new
             {
-                estatus=x.estatus1.id,
-                bancoEmpreId = x.bancosempre!=null ? x.bancosempre.id : 7 ,
+                estatus = x.estatus1.id,
+                bancoEmpreId = x.bancosempre != null ? x.bancosempre.id : 7,
                 montoDeposito = x.montoDeposito,
                 moneda = x.monedaDeposito,
                 fecha = x.fecha,
-                banco= x.bancosempre!=null ? x.bancosempre.nombre:"EFECTIVO",
+                banco = x.remesaType == 1 ? "EFECTIVO " +x.moneda.sing  : x.bancosempre != null ? x.bancosempre.nombre : "NO PROCESADO",
                 cuenta= x.bancosempre!= null ? x.bancosempre.cuentaNumero : "",
                 sing =x.moneda.sing,
                 cambio=x.cambio.cambio1,
@@ -48,14 +48,14 @@ namespace RemesasJJWebAPP.Controllers
             });
             var TotalEnviado = filter.Where(x => x.estatus == 2).Sum(x => x.enviado);
             var Group = filter.
-                GroupBy(x => new { x.bancoEmpreId , x.moneda } ).
+                GroupBy(x => new { x.banco , x.moneda } ).
                 Select(cl => new {
-                      cl.Key.bancoEmpreId,
+                      cl.FirstOrDefault().bancoEmpreId,
                       total=cl.Sum(x=>x.montoDeposito),
                       cl.Key.moneda,
                       cl.FirstOrDefault().cuenta,
                       cl.FirstOrDefault().fecha,
-                      cl.FirstOrDefault().banco,
+                      cl.Key.banco,
                       cl.FirstOrDefault().sing,
                       cl.FirstOrDefault().cambio
                     

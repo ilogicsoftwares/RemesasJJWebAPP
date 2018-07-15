@@ -105,6 +105,31 @@
     $scope.Actualizar();
     
    
+    $scope.EditarRol = function (id) {
+
+        $scope.Actualizar();
+
+        Request.make("POST", "/admin/GetRole/", {id:id}).then(function (data) {
+            $scope.newRole = data.nombre;
+
+            Request.make("POST", "/admin/GetUserAcess/", {id:id}).then(function (data) {
+                var usuarioAc = data;
+
+                usuarioAc.forEach(function (item, index) {
+
+                    $scope.accesos.forEach(function (item2) {
+                        if (item2.id = item.acesosid) {
+                            item2.active = 1;
+                        }
+
+                    });
+                });
+            });
+
+        });
+
+
+    }
 
     
 
@@ -557,11 +582,7 @@
 
     }
 
-    Request.make("POST", "/Remesas/BancosEmpre/").then(function (data) {
-       
-        $scope.bancos = data;
-        
-    })
+   
     Request.make("POST", "/Remesas/BancosTrans/").then(function (data) {
 
         $scope.bancosTrans = data;
@@ -577,7 +598,38 @@
 
             var actRemesa = remesa;
             estatusActual = data.estatus;
+            remesaTipo = remesa.tipo;
+            Request.make("POST", "/Remesas/BancosEmpre/").then(function (data) {
+
+
+
+                if (remesaTipo == "OFICINA") {
+                    data.forEach(function (item, index) {
+                        if (!item.nombre.includes("EFECTIVO")) {
+                            delete data[index];
+
+                        }
+
+                    });
+                } else {
+                    data.forEach(function (item, index) {
+                        if (item.nombre.includes("EFECTIVO")) {
+                            delete data[index];
+
+                        }
+
+                    });
+                }
+
+
+                $scope.bancos = data;
+
+            });
+
+           
+
             
+
             if (remesa.estatus != estatusActual) {
                 actRemesa = data;
                 remesa.estatus = estatusActual;

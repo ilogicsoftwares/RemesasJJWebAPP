@@ -58,7 +58,39 @@ namespace RemesasJJWebAPP.Controllers
             return Json(new { estatus = true });
 
         }
-        
+
+        [HttpPost]
+        public JsonResult GetRole(int id)
+        {
+            roles role;
+            try
+            {
+                change.context.Configuration.ProxyCreationEnabled = false;
+               role= change.context.roles.FirstOrDefault(x => x.id == id);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { estatus = false });
+            }
+            return Json(role);
+
+        }
+        [HttpPost]
+        public JsonResult GetUserAcess(int id)
+        {
+            object roleAcess;
+            try
+            {
+                change.context.Configuration.ProxyCreationEnabled = false;
+                roleAcess = change.context.roleacess.Where(x => x.roleid == id).ToList();
+            }
+            catch (Exception ex)
+            {
+                return Json(new { estatus = false });
+            }
+            return Json(roleAcess);
+
+        }
         [HttpPost]
         public JsonResult GetBancosEmpre(int bancoType)
         {
