@@ -85,19 +85,19 @@
 }).controller("adminRolesController", function ($scope, $sce, $location, Request, Notify, $state) {
     $scope.btnEstatus = "Guardar";
     $scope.accesos = {};
-   
-
-
+    $scope.Rolex = {newRole:"", id:null};
     $scope.cancelRoles = function () {
-         $scope.newRole = "";
+       $scope.Rolex.newRole = "";
     }
     $scope.Actualizar = function () {
-
+        $scope.Rolex.newRole = "";
+        $scope.Rolex.id = null;
+        $scope.btnEstatus = "Guardar";
         Request.make("POST", "/admin/GetAccesos/").then(function (data) {
             $scope.accesos = data;
             Request.make("POST", "/admin/getAllRoles/").then(function (data) {
                 $scope.roles = data;
-                $scope.cancelRoles();
+               // $scope.cancelRoles();
             });
         });
        
@@ -107,23 +107,25 @@
    
     $scope.EditarRol = function (id) {
 
-        $scope.Actualizar();
+       
 
-        Request.make("POST", "/admin/GetRole/", {id:id}).then(function (data) {
-            $scope.newRole = data.nombre;
-
+        Request.make("POST", "/admin/GetRole/", { id: id }).then(function (data) {
+            $scope.Actualizar();
+            $scope.Rolex.newRole = data.name;
+            $scope.Rolex.id = id;
             Request.make("POST", "/admin/GetUserAcess/", {id:id}).then(function (data) {
                 var usuarioAc = data;
 
                 usuarioAc.forEach(function (item, index) {
 
                     $scope.accesos.forEach(function (item2) {
-                        if (item2.id = item.acesosid) {
+                        if (item2.id == item.acesosid) {
                             item2.active = 1;
                         }
 
                     });
                 });
+                $scope.btnEstatus = "Editar";
             });
 
         });
@@ -137,7 +139,7 @@
         if (!$scope.form1.$valid)
             return;
         event.preventDefault();
-        Request.make("POST", "/admin/saveroles/", { accesos: $scope.accesos, rol: { name: $scope.newRole } }).then(function () {
+        Request.make("POST", "/admin/saveroles/", { accesos: $scope.accesos, rol: { name: $scope.Rolex.newRole }, id: $scope.Rolex.id }).then(function () {
             $scope.Actualizar();
         });
 

@@ -5,6 +5,7 @@ using RemesasJJWebAPP.Filters;
 using RemesasJJWebAPP.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -183,8 +184,34 @@ namespace RemesasJJWebAPP.Controllers
 
         }
         [HttpPost]
-        public JsonResult SaveRoles(List<acesos> accesos,roles rol)
+        public JsonResult SaveRoles(List<acesos> accesos,roles rol, int? id=null)
         {
+
+            if (id != null) {
+
+
+                Bancosx.context.roleacess.RemoveRange(Bancosx.context.roleacess.Where(x => x.roleid == id));
+                Bancosx.context.SaveChanges();
+                foreach (var item in accesos)
+                {
+                    if (item.active == 1)
+                    {
+                        roleacess rolito = new roleacess();
+                        rolito.roleid = (int) id;
+                        rolito.acesosid = item.id;
+
+                        Bancosx.context.roleacess.Add(rolito);
+
+                    }
+
+                }
+                Bancosx.context.SaveChanges();
+
+            }
+            else
+
+            { 
+                
             try
             {
                 Bancosx.context.roles.Add(rol);
@@ -209,8 +236,8 @@ namespace RemesasJJWebAPP.Controllers
             {
                 return Json(new { error = true, estatus = false });
             }
+            }
 
-          
             return Json(new { estatus = true });
 
         }
