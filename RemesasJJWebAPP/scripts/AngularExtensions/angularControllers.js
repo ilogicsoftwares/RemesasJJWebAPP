@@ -140,6 +140,11 @@
             return;
         event.preventDefault();
         Request.make("POST", "/admin/saveroles/", { accesos: $scope.accesos, rol: { name: $scope.Rolex.newRole }, id: $scope.Rolex.id }).then(function () {
+            if ($scope.Rolex.id == null) {
+                window.alert("Se han Guardado los datos");
+            } else {
+                window.alert("Se han Editado los datos");
+            }
             $scope.Actualizar();
         });
 
