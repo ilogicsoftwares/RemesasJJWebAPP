@@ -416,6 +416,7 @@ namespace RemesasJJWebAPP.Controllers
             if (currentUser!=null && usuario.password.Equals(currentUser.clave))
             {
                 FormsAuthentication.SetAuthCookie(currentUser.id.ToString(), true);
+                Session["currentUserName"] = currentUser.nombre;
                 return Json(new { estatus = true });
             }
 
@@ -445,8 +446,8 @@ namespace RemesasJJWebAPP.Controllers
 
         public ActionResult Homes()
         {
-           
-                return View();
+                       
+            return View();
             
         }
 
