@@ -101,6 +101,7 @@ namespace RemesasJJWebAPP.Controllers
         }
 
         // POST: Remesas/Create
+        [CustAuthFilter]
         [HttpPost]
         public JsonResult ProcessRemesa(int id, string idDeposito, string idTransf, int idBanco, int BancoTrans, string imgName="")
         {
