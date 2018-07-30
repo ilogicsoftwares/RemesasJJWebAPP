@@ -14,22 +14,25 @@ using static RemesasJJWebAPP.MvcApplication;
 
 namespace RemesasJJWebAPP.Controllers
 {
+   
     public class AdminController : Controller
     {
         // GET: Admin
         public Change change = new Change();
         public Bancos Bancosx = new Bancos();
         public Usuarios usuariosx = new Usuarios();
-        
+       
         public ActionResult Index()
         {
             return View();
         }
+        [Authorize]
         [CustAuthFilter]
         public ActionResult Bancos()
         {
             return View();
         }
+        [Authorize]
         [CustAuthFilter]
         public ActionResult Roles()
         {
@@ -37,9 +40,20 @@ namespace RemesasJJWebAPP.Controllers
         }
 
         // GET: Admin/Details/5
+        
         [Authorize]
         public ActionResult Desktop()
         {
+               
+            if (HttpContext.User != null)
+            {
+                var currentUser = usuariosx.GetByID(int.Parse(HttpContext.User.Identity.Name));
+                Session["currentUserName"] = currentUser.nombre;
+                
+            }else
+            {
+                FormsAuthentication.SignOut();
+            }
             ViewBag.cambio = JsonConvert.SerializeObject(new cambio()); 
             return View();
         }

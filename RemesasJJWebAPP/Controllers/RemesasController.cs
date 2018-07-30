@@ -15,6 +15,9 @@ namespace RemesasJJWebAPP.Controllers
         // GET: Remesas
         Remesa remesax = new Remesa();
         Bancos banco = new Bancos();
+
+
+        [Authorize]
         [CustAuthFilter]
         public ActionResult Index()
         {
