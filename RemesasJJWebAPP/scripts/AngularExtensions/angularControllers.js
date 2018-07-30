@@ -333,10 +333,13 @@
         $scope.Botton = false;
         $scope.loading2 = true;
         state.preventDefault();
-        $scope.remesa.remex.fecha = new Date();
+       
         if (option) {
             if ($scope.remesa.remex.file != null || $scope.remesa.remex.file=='')
-            $scope.file.filename = $scope.remesa.remex.file;
+                $scope.file.filename = $scope.remesa.remex.file;
+            $scope.remesa.remex.editadael = new Date();
+        } else {
+            $scope.remesa.remex.fecha = new Date();
         }
         Request.make("POST", "/Form/Enviar", { remesa: $scope.remesa.remex, file: $scope.file.filename}).then(function (data) {
             if (data.estatus) {
@@ -501,7 +504,7 @@
             $scope.remesa.remex.cuentaBenefType = $scope.remesa.remex.cuentaBenefType.toString();
             $scope.remesa.remex.monedaDeposito = $scope.remesa.remex.monedaDeposito.toString();
            
-            $state.go("FormOffice");
+            $state.go("EditarRemesa");
         });
     }
 

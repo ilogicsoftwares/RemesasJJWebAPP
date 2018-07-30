@@ -27,6 +27,11 @@ namespace RemesasJJWebAPP.Controllers
         {
             return View();
         }
+        [CustAuthFilter]
+        public ActionResult EditarRemesa()
+        {
+            return View(@"~\Views\FormOffice\Index.cshtml");
+        }
         public ActionResult remesasReport(int id)
         {
 

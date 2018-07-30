@@ -84,6 +84,20 @@
               }
           }
       }).state({
+          name: "EditarRemesa",
+          templateUrl: "/formOffice/EditarRemesa",
+          controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+
+                  return Request.make("POST", "/form/Bancos/");
+              }, closex: function () {
+
+
+                  $("#wrapper").toggleClass("toggled");
+              }
+          }
+      }).state({
           name: "FormOffice2",
           templateUrl: "/formOffice/form2",
           controller: "FormController",

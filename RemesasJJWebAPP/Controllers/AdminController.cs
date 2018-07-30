@@ -144,7 +144,7 @@ namespace RemesasJJWebAPP.Controllers
         [HttpPost]
         public JsonResult GetAccesos()
         {
-            var data = Bancosx.context.acesos.ToList().Select(x => new {
+            var data = Bancosx.context.acesos.ToList().OrderBy(x=>x.peso).Select(x => new {
                 id = x.id,
                 nombre = x.nombre,
                 active = x.active

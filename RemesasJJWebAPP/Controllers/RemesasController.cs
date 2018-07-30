@@ -128,8 +128,12 @@ namespace RemesasJJWebAPP.Controllers
         {
             try
             {
+
+
+               
                 var remesita = remesax.GetByID(id);
                 remesita.estatus = 3;
+                remesita.AnuladaPor = int.Parse(HttpContext.User.Identity.Name);
                 remesita.unulaDetail = anulaDetail;
                 remesax.Update(remesita);
                 remesax.Save();

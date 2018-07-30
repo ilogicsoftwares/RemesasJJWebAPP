@@ -101,6 +101,7 @@ namespace RemesasJJWebAPP.Controllers
             {
                 try
                 {
+                    remesa.editadaPor = int.Parse(HttpContext.User.Identity.Name);
                     remesa.file = file;
                     remex.Update(remesa);
                     remex.Save();
@@ -115,6 +116,7 @@ namespace RemesasJJWebAPP.Controllers
 
             try
             {
+                remesa.CreadaPor = int.Parse(HttpContext.User.Identity.Name);
                 remesa.file = file;
                 remesa.estatus = 1;
                 remesa.cambioid = change.GetActualChange().id;
