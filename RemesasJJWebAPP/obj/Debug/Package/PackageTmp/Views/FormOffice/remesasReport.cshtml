@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    
+</head>
+<body>
+    <button class="btn btn-default btn-sm pull-right no-print" onclick="window.print()" value="+" style="font-weight:bold;font-size:medium" title="Imprimir">
+        <span class="glyphicon glyphicon-print"></span>
+    </button>
+    <div style="width:250px;height:600px;font-family:Tahoma;font-size:smaller;margin:0;padding:0">
+        <div id="header" class="text-center">
+           
+            <img src="~/Content/vertionly.png" class="w3-center w3-margin" width="60" />
+            <p>REMESASJJ</p>
+            <p>Callao, Av Saenz Peña 709 local 5</p>
+            <p>Telefono: +51935272775</p>
+            <p>remesasjj@gmail.com</p>
+            <p>FECHA: @DateTime.Now.Date.ToShortDateString() HORA: @DateTime.Now.ToShortTimeString()</p>
+        </div> 
+        <div id="content" style="display:grid">
+            <div class="row">
+                <p class="text-center">--------------------Datos del Cliente---------------------</p>
+
+
+                <div class="col-md-12"> 
+                    <p class="text-right">N°:{{remesa.numero}}</p>
+                    <p class="text-left">Cliente.:{{remesa.cliente}}</p>
+                    <p class="text-left">Telf.:{{remesa.telf}}</p>
+                    <p class="text-left">Correo.:{{remesa.correo}}</p>
+                 </div>
+              
+            </div>
+                <div class="row">
+                    <p class="text-center">--------------------Datos del Envio---------------------</p>
+
+                    <div class="col-md-12">
+                        <p class="text-left">Cedula Benef.: {{remesa.cedula}}  </p>
+                        <p class="text-left">Nombre Benef.: {{(remesa.nombre).substring(0,41)}}</p>
+                        <p class="text-left">Monto el Envio: {{remesa.sing }} {{remesa.monto | currencyde}}</p>
+                        <p class="text-left">Monto a Recibir Bs.: {{remesa.montorec | currencyde}}</p>
+                        <p class="text-left">Banco Benef.: {{(remesa.banco).substring(0,41)}}</p>
+                        <p class="text-left">Cuenta:{{(remesa.cuenta)}}</p>
+                    </div>
+                   
+                    <p class="text-center">-----------------------------------------------------------</p>
+                    <p class="text-center">Conserve este ticket para solventar cualquier problema</p>
+                </div>
+
+            </div> 
+    </div>
+    <script>
+        var remesa=@Html.Raw(ViewBag.remesa);
+    </script>
+    <style media="print">
+ @@page {
+  margin: 0;
+  margin-left:5px;
+  display:block;
+       }
+    </style>
+</body>
+</html>

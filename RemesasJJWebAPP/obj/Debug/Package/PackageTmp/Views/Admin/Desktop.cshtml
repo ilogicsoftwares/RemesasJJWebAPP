@@ -1,0 +1,109 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RemesasJJ - Admin</title>
+
+   
+    <!-- Custom styles for this template -->
+    <link href="~/Template2/css/simple-sidebar.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+
+    <link href="~/Content/w3.css" rel="stylesheet" />
+    <link href="~/Content/w3-theme-blue.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+</head>
+
+<body ng-app="RemesasApp" ng-controller="adminController">
+    <style>
+        @@media print {
+            .no-print, .no-print * {
+                display: none !important;
+            }
+        }
+    </style>
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" class="no-print">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        <strong>RemesasJJ</strong>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref="ActCambio">Actualizar Cambio</a>
+                </li>
+                <li>
+                    <a ui-sref="ActRemesa">Reportes-Pagos</a>
+                </li>
+                <li>
+                    <a ng-click="NewRemesa()" href="#">Remesas</a>
+                </li>
+                <li>
+                    <a ui-sref="Bancos">Bancos</a>
+                </li>
+                <li>
+                    <a ui-sref="Usuarios">Usuarios</a>
+                </li>
+                <li>
+                    <a ui-sref="Roles">Roles</a>
+                </li>
+                
+                <li>
+                    <a href="/admin/logout">Salir</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+       
+        
+        
+        <div id="page-content-wrapper">
+            <div>
+            <ui-view>
+            
+            </ui-view>    
+               
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Template2/vendor/jquery/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="~/Template2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/scripts/angular.js"></script>
+    <script src="~/scripts/AngularExtensions/angular-ui-notification.js"></script>
+    <script src="~/scripts/Angular-Ui-Route.js"></script>
+    <script src="~/scripts/AngularExtensions/dirPagination.js"></script>
+    <script src="~/scripts/AngularExtensions/angularServices.js"></script>
+    <script src="~/scripts/AngularExtensions/angularConfig.js"></script>
+    <script src="~/scripts/AngularExtensions/angularDirectives.js"></script>
+    <script src="~/scripts/AngularExtensions/angularFilters.js"></script>
+    <script src="~/scripts/AngularExtensions/angularControllers.js"></script>
+    <script src="~/scripts/angular-route.js"></script>
+    <!-- Menu Toggle Script -->
+    <script>
+   
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{
+    Layout = null;
+}
+
+<body>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div class="w3-animate-right">
+        <div class="w3-container w3-green">
+            <h2 class="text-center">FORMULARIO DE ENVIO</h2>
+        </div>
+
+        <form name="Form1" class="w3-container">
+            <p id="3" class="form-group">
+                <h2>Forma de Pago</h2><br />
+                <input id="male" class="w3-radio" type="radio" name="remesaType" ng-model="remesa.remex.remesaType" value="2" ng-click="showForm(true)" checked>
+                <label>Depósito</label>
+                <input id="male" class="w3-radio" type="radio" name="remesaType" ng-model="remesa.remex.remesaType" value="3" ng-click="showForm(true)">
+                <label>Transferencia</label>x|
+            </p>
+            <div ng-show="depoTran">
+                <p id="4" class="form-group">
+                    <h2>Adjuntar Voucher</h2><br />
+                    <input class="w3-input" id="file" type="file" value="male" ng-model="filejpg" onchange="angular.element(this).scope().add()">
+                <p style="color:red">{{ImgError}}</p>
+                <div class="loader" ng-show="loading"></div>
+                <img id="fileimage" class="img-responsive" width="35" ng-show="showFile" src="~/Content/Uploads/{{newFileName}}" />
+                <label>Fecha</label>
+                <input id="fecha" class="w3-input" type="date" name="fecha" ng-model="remesa.remex.fecha" />
+                </p>
+            </div>
+            <p id="3" class="form-group">
+                <h2>Moneda</h2><br />
+                <input id="male" class="w3-radio" type="radio" name="monedaDeposito" ng-model="remesa.remex.monedaDeposito" ng-click="calEnviox()" value="1" required checked>
+                <label>SOLES</label>
+                <input id="male" class="w3-radio" type="radio" name="monedaDeposito" ng-model="remesa.remex.monedaDeposito" ng-click="calEnviox()" value="2">
+                <label>DÓLARES</label><br />
+                <label>Monto</label>
+                <input id="montox" class="w3-input text-right" type="number" min="10" step="0.01" ng-model="remesa.remex.montoDeposito" value="male" ng-change="calEnvio()" required>
+                <h2 class="text-right">Total Bs.{{remesa.remex.montoDestino | currency: '': 2}}</h2>
+            </p>
+            <p id="1" class="form-group">
+                <button style="color:white;font-weight:bolder" ng-click="gotoForm('Form4')" class="btn btn-success pull-right">Siguente</button>
+                <button style="color:white;font-weight:bolder" ng-click="gotoForm('Form2')" class="btn btn-success pull-right w3-margin-right">Anterior</button>
+            </p>
+        </form>
+        </div>
+    <script>
+        document.getElementById('montox').addEventListener('keydown', function (e) {
+            if (e.which === 38 || e.which === 40) {
+                e.preventDefault();
+            }
+        });
+
+    </script>
+</body>
