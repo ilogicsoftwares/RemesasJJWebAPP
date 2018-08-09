@@ -335,9 +335,14 @@
         state.preventDefault();
        
         if (option) {
-            if ($scope.remesa.remex.file != null || $scope.remesa.remex.file=='')
+            if ($scope.remesa.remex.file != null || $scope.remesa.remex.file == '')
                 $scope.file.filename = $scope.remesa.remex.file;
+
+        }
+
+        if ($scope.remesa.remex.id != 0) {
             $scope.remesa.remex.editadael = new Date();
+            $scope.remesa.remex.fecha = getFecha($scope.remesa.remex.fecha)
         } else {
             $scope.remesa.remex.fecha = new Date();
         }

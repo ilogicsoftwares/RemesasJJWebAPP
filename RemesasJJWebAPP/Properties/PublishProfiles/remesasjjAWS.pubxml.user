@@ -271,7 +271,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/30/2018 03:10:47</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularControllers.js">
-      <publishTime>07/30/2018 03:56:51</publishTime>
+      <publishTime>07/31/2018 15:44:00</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularDirectives.js">
       <publishTime>03/29/2018 16:53:57</publishTime>
