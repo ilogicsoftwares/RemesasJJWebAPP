@@ -78,7 +78,43 @@
             </div>
         </div>
         <!-- /#page-content-wrapper -->
+        <div id="id69" class="w3-modal" ng-controller="CalculatorController"  >
+            <div class="w3-modal-content w3-container w3-card-4" style="width:600px;background:white!important;text-align:left!important">
+                <div class="container wow fadeIn">
+                    <div class="row">
+                        <div class="col-lg-12 text-left">
+                            <h3 style="color:darkseagreen">Calculadora de Conversión</h3>
 
+                            <p class="cta-text"> ¿Qué Deseas Convertir?</p>
+                            <div class="radio" style="color:black!important">
+                                <label><input ng-model="option" ng-click="monedaAct()" value="1" type="radio" name="optradio"><strong>Soles a Bolívares</strong></label>
+                            </div>
+                            <div class="radio" style="color:black!important">
+                                <label><input ng-model="option" ng-click="monedaAct()" value="2" type="radio" name="optradio"><strong>Dólares a Bolívares</strong></label>
+                            </div>
+                            <div class="radio" style="color:black!important">
+                                <label><input ng-model="option" ng-click="monedaAct()" value="3" type="radio" name="optradio"><strong>Soles a Dólares</strong></label>
+                            </div>
+
+                        </div>
+                       
+                       
+                        <div ng-show="!dolarAct" class="col-lg-12 cta-btn-container text-center">
+                            <input ng-model="monto" style="text-align:right" type="number" class="form-control" id="usr">
+                            <h1 style="color:darkseagreen" class="text-right"><strong>Bs.{{total | currencyde}}</strong></h1>
+                        </div>
+                        <div ng-show="dolarAct" class="col-lg-12 cta-btn-container text-center">
+                            <input ng-model="monto" style="text-align:right" type="number" class="form-control" id="usr">
+                            <h1 style="color:darkseagreen" class="text-right"><strong>${{total | currencyde}}</strong></h1>
+                        </div>
+                    </div>
+
+                </div>
+                <button ng-click="modal.closeModal('id69')" class="w3-btn w3-margin-top w3-border w3-border-blue w3-round w3-tiny w3-right">Cancelar</button>
+                <button ng-click="calculator()" class="w3-btn w3-margin-top w3-margin-right  w3-border w3-border-red w3-round w3-tiny w3-right">Procesar</button>
+            </div>
+
+        </div>
     </div>
     <!-- /#wrapper -->
     <!-- Bootstrap core JavaScript -->
@@ -104,6 +140,17 @@
     });
     </script>
 
+    <style>
+     .w3-modal button{
+          margin-bottom:16px 
+
+     }
+     .w3-modal-content.w3-container{
+         border-radius:12px;
+         box-shadow:0 4px 10px 0 rgba(0,0,0,0.5), 0 4px 20px 0 rgba(0,0,0,0.5)
+
+     }
+    </style>
 </body>
 
 </html>

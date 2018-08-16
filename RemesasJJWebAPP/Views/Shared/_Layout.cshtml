@@ -4,8 +4,9 @@
    
    
 </head>
-<body>
+<body ng-controller="adminController">
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:black!important">
+        <a ng-click="modal.showModal('id69')" class="navbar-brand pull-right glyphicon glyphicon-list-alt" title="Calculadora"></a>
         <div >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -13,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-               
+                
                 <a style="background-color:black;border:0px;margin-left:-1px;color:white" href="#menu-toggle" class="navbar-brand" id="menu-toggle">Menú</a>
                <a class="navbar-brand">Administración RemesasJJ - @Session["currentUserName"]</a>
                 

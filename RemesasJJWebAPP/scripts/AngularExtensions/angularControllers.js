@@ -33,7 +33,7 @@
      $scope.monedaAct = function () {
          if ($scope.option == 3) {
              $scope.dolarAct = true;
-         } else {1
+         } else {
              $scope.dolarAct = false;
          }
      }
@@ -59,7 +59,31 @@
      }
  
  })
+.controller("CalculatorController", function ($scope, $sce, $location,Request, Notify,$state) {
+    
+    $scope.dolarAct = false;
+    $scope.monedaAct = function () {
+      $scope.dolarAct = $scope.option == 3;
+    }
+    $scope.option = 0;
+    $scope.monto = 0.00;
+    $scope.total = 0.00
+    $scope.calculator = function () {
+        if ($scope.option == 0) {
+            alert("Seleccione una opción para calcular");
+        }
+        if ($scope.option == 1) {
+            $scope.total = $scope.monto * $scope.solBs;
+        }
+        if ($scope.option == 2) {
+            $scope.total = $scope.monto * $scope.dolarBs;
+        }
+        if ($scope.option == 3) {
+            $scope.total = $scope.monto / $scope.cambio;
 
+        }
+    }
+})
 .controller("MainController", function ($scope, $sce, $location,Request, Notify,$state) {
 
     var user1 = { userName: "", password: "" };
@@ -255,7 +279,7 @@
                        ]
 
 }).controller("adminController", function ($scope, $sce, $location, Request, Notify, $state,Modals) {
-
+    $scope.modal = Modals;
     $scope.remesa = {remex:null};
     var remesamain = null;
     $scope.file = { filename: "" };
@@ -283,8 +307,7 @@
         if ($scope.option == 3) {
             $scope.dolarAct = true;
         } else {
-            1
-            $scope.dolarAct = false;
+              $scope.dolarAct = false;
         }
     }
 
