@@ -769,6 +769,7 @@
     }
 
 }).controller("adminUsuariosController", function ($scope, $sce, $location, Request, Notify, $state) {
+   
     Request.make("POST", "/admin/getusuarios/").then(function (data) {
 
         $scope.usuarios = data;
@@ -777,7 +778,7 @@
     Request.make("POST", "/admin/getAllRoles/").then(function (data) {
 
         $scope.roles = data;
-
+      
     });
 
     $scope.enableFuncs = function () {
@@ -798,7 +799,7 @@
 
     $scope.cancelUser = function () {
         $scope.user = null;
-       
+        $scope.btnEstatus = "Guardar";
     }
 
     $scope.saveUser = function (event) {
@@ -807,16 +808,29 @@
             window.alert("Complete todos los datos");
             return;
         }
+
+        if (!scope.userKeyRepeat && $scope.btnEstatus=="Guardar") {
+            window.alert("Las Claves no coinciden");
+            return;
+        }
             
 
         event.preventDefault();
-        $scope.user.roleid = $scope.rol.id;
+        $scope.user.roleid = $scope.user.rol.id;
         Request.make("POST", "/admin/saveUser/", { user: $scope.user }).then(function (data) {
       
             $scope.enableFuncs();
             $scope.cancelUser();
            
         });
+    }
+    $scope.EditUser = function (id) {
+        $scope.btnEstatus = "Editar";
+        Request.make("POST", "/admin/getuser/", { id: id }).then(function (data) {
+            $scope.user = data;
+            $scope.user.rol = { id: data.roles.id, name: data.roles.name } ;
+        });
+        
     }
 
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {

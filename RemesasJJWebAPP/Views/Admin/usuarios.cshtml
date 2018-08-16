@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 <div style="max-height:600px;overflow-y:auto;">
@@ -18,12 +17,12 @@
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Repetir Clave de Usurio</label>
-            <input ng-model="userKeyRepeat" type="password" class="form-control" id="exampleInputPassword1" required>
+            <input ng-model="user.userKeyRepeat" type="password" class="form-control" id="exampleInputPassword1">
         </div>
         <div class="form-group">
             <p>
                 <label>Rol</label>
-                <select class="w3-select" name="option" ng-init="rol=tipoBanco[0]" ng-model="rol" ng-options="item as item.name for item in roles track by item.id" required>
+                <select class="w3-select" name="option"  ng-model="user.rol" ng-options="item as item.name for item in roles track by item.id" required>
                     <option value="null" disabled selected>Seleccione tipo de Banco</option>
                 </select>
             </p>
@@ -73,7 +72,7 @@
                     <th>ELIMINAR</th>
                 </tr>
                 <tr ng-repeat="item in usuarios">
-                    <td>{{item.id}}</td>
+                    <td ng-click="EditUser(item.id)"><a href="">{{item.id}}</a></td>
                     <td>{{item.nombre}}</td>
                     <td>{{item.correo}}</td>
                     <td>{{item.nombrex}}</td>

@@ -15,7 +15,7 @@ using static RemesasJJWebAPP.MvcApplication;
 namespace RemesasJJWebAPP.Controllers
 {
    
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         // GET: Admin
         public Change change = new Change();
@@ -271,6 +271,15 @@ namespace RemesasJJWebAPP.Controllers
 
         }
         [HttpPost]
+        public JsonResult Getuser(int id)
+        {
+           
+            var usuario = usuariosx.GetByID(id);
+
+            return Json(usuario);
+
+        }
+        [HttpPost]
         public JsonResult saveUser(users user)
         {
             try
@@ -283,6 +292,7 @@ namespace RemesasJJWebAPP.Controllers
                 }
                 else
                 {
+                    user.roles = null;
                     usuariosx.Update(user);
                 }
                 usuariosx.Save();
