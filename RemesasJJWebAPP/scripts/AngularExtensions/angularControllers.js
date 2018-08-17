@@ -559,7 +559,7 @@
     $scope.filtrar = function (param, tipo) {
        
        
-        var newparam = { fecha: [formattedDate($scope.fecha)], estatus: [$scope.estatus], nombreCliente: [param], tipo: [param], cedulaBenef:[param] }
+        var newparam = { fecha: [formattedDate($scope.fecha)], estatus: [$scope.estatus], nombreCliente: [param], tipo: [param], cedulaBenef: [param], banco: [param], procesada: [$scope.estatus] }
         if (tipo == 'fecha') {
             ReporteFecha = param;
             newparam = { fecha: [formattedDate(param)]}

@@ -41,12 +41,14 @@
           }
       }).state({
           name: "ActRemesa",
-          url: "/remesas/Remesas",
+          url: "/remesas/Remesas/:id",
           templateUrl: "/remesas/index",
           controller: "adminRemesaController",
           resolve: {
               clientes: function () {
                   $("#wrapper").toggleClass("toggled");
+              }, user: function ($stateParams, Request) {
+                  return Request.make("POST", "/admin/getuser/", { id: $stateParams.id });
               }
           }
       }).state({
@@ -67,6 +69,16 @@
           resolve: {
               clientes: function () {
                   $("#wrapper").toggleClass("toggled");
+              }
+          }
+      }).state({
+          name: "AdminUser",
+          url: "/admin/adminuser/:id",
+          templateUrl: "/admin/adminuser",
+          controller: "adminRemesaController",
+          resolve: {
+              user: function ($stateParams,Request) {
+                  return Request.make("POST", "/admin/getuser/", { id: $stateParams.id });
               }
           }
       }).state({

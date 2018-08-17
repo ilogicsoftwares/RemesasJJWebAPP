@@ -55,8 +55,9 @@
             angular.forEach(keyObj,function(obj,key){
                 filterObj.applyFilter(obj,key);
             });
+            return filterObj.filteredData;
         }
-        return filterObj.filteredData;
+        return null;
     }
 }]);
 

@@ -61,10 +61,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/30/2018 01:50:47</publishTime>
     </File>
     <File Include="bin/RemesasJJWebAPP.dll">
-      <publishTime>08/16/2018 03:23:10</publishTime>
+      <publishTime>08/17/2018 14:16:24</publishTime>
     </File>
     <File Include="bin/RemesasJJWebAPP.pdb">
-      <publishTime>08/16/2018 03:23:10</publishTime>
+      <publishTime>08/17/2018 14:16:24</publishTime>
     </File>
     <File Include="bin/SendGrid.dll">
       <publishTime>08/22/2017 12:14:28</publishTime>
@@ -268,16 +268,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/17/2018 20:34:30</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularConfig.js">
-      <publishTime>07/30/2018 03:10:47</publishTime>
+      <publishTime>08/16/2018 22:18:30</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularControllers.js">
-      <publishTime>08/16/2018 03:31:09</publishTime>
+      <publishTime>08/17/2018 01:47:56</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularDirectives.js">
       <publishTime>03/29/2018 16:53:57</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularFilters.js">
-      <publishTime>04/28/2018 15:50:34</publishTime>
+      <publishTime>08/17/2018 02:05:25</publishTime>
     </File>
     <File Include="scripts/AngularExtensions/angularServices.js">
       <publishTime>07/09/2018 02:20:51</publishTime>
@@ -546,6 +546,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Template2/vendor/jquery/jquery.slim.min.map">
       <publishTime>03/20/2018 23:58:51</publishTime>
     </File>
+    <File Include="Views/Admin/AdminUser.cshtml">
+      <publishTime>08/17/2018 14:16:15</publishTime>
+    </File>
     <File Include="Views/Admin/Bancos.cshtml">
       <publishTime>07/09/2018 03:17:56</publishTime>
     </File>
@@ -553,7 +556,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/14/2018 22:59:07</publishTime>
     </File>
     <File Include="Views/Admin/Desktop.cshtml">
-      <publishTime>08/16/2018 00:36:10</publishTime>
+      <publishTime>08/16/2018 22:20:20</publishTime>
     </File>
     <File Include="Views/Admin/Homes.cshtml">
       <publishTime>07/23/2018 00:30:03</publishTime>
@@ -565,7 +568,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/22/2018 14:33:01</publishTime>
     </File>
     <File Include="Views/Admin/usuarios.cshtml">
-      <publishTime>08/16/2018 03:27:18</publishTime>
+      <publishTime>08/16/2018 20:42:47</publishTime>
     </File>
     <File Include="Views/Form/Error.cshtml">
       <publishTime>06/11/2018 02:01:31</publishTime>
@@ -610,7 +613,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/22/2018 20:57:53</publishTime>
     </File>
     <File Include="Views/Remesas/Index.cshtml">
-      <publishTime>07/15/2018 18:51:55</publishTime>
+      <publishTime>08/17/2018 13:53:12</publishTime>
     </File>
     <File Include="Views/Reports/GeneralRemesas.cshtml">
       <publishTime>07/15/2018 18:51:55</publishTime>
@@ -628,7 +631,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/17/2018 16:28:35</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/16/2018 08:46:46</publishTime>
+      <publishTime>08/17/2018 14:16:38</publishTime>
     </File>
   </ItemGroup>
 </Project>
