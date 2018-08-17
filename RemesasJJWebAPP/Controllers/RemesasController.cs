@@ -26,9 +26,11 @@ namespace RemesasJJWebAPP.Controllers
 
         // GET: Remesas/Details/5
         [HttpPost]
-        public JsonResult GetAll()
+        public JsonResult GetAll(int? id)
         {
-            var remesas = remesax.GetAll();
+
+            var remesas =id==null || id==0 ? remesax.GetAll(): remesax.GetAll().Where(x=>x.procesadaPor==id || x.CreadaPor==id);
+
             var remex = remesas.ToList().Select(x => new {
                 x.id,
                 fecha = x.fecha.Value.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
@@ -119,6 +121,7 @@ namespace RemesasJJWebAPP.Controllers
           var process= remesax.processRemesa(id, idDeposito, idTransf, idBanco,BancoTrans);
           var nuevoStatus=  remesax.GetByID(id);
           nuevoStatus.imgTrans = imgName;
+            nuevoStatus.procesadaPor = int.Parse(HttpContext.User.Identity.Name);
           remesax.Update(nuevoStatus);
           remesax.Save();
           return Json(new {state=process,newEstatus=nuevoStatus.estatus1.estatus1});

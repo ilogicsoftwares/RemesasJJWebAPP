@@ -457,8 +457,12 @@
 
     }
 
-}).controller("adminRemesaController", function ($scope, $sce, $location, Request, Notify, $http , $state,Modals,$filter) {
+}).controller("adminRemesaController", function ($scope, $sce, $location, Request, Notify, $http , $state,Modals,$filter,user) {
     
+
+    $scope.user = user;
+    $scope.fechita = new Date();
+    $scope.fechaVal = formattedDateG($scope.fechita);
 
     $scope.AnulaDetail = "";
     $scope.disableAnula = false;
@@ -536,13 +540,13 @@
         });
     }
 
-    Request.make("POST", "/remesas/getall/").then(function (data) {
+    Request.make("POST", "/remesas/getall/", {id:$state.params.id}).then(function (data) {
         datax.remesas = data;
         $scope.remesasx = data;
-        var fechita = new Date();
-        $scope.fechaVal = formattedDateG(fechita);
-        var forFilter = formattedDate(fechita);
-        $scope.filtrar(forFilter);
+        
+        $scope.fechaVal = formattedDateG($scope.fechita);
+       var forFilter = $scope.fechita;
+        $scope.filtrar(forFilter, 'fecha');
         ReporteFecha = $scope.fechaVal;
 
         $scope.calcularTotals();
@@ -553,16 +557,22 @@
         $scope.sumEnvios = suma($scope.remesasx, "montoDestinoN");
     }
     $scope.filtrar = function (param, tipo) {
-
-        if (tipo == "fecha") {
-            param = formattedDate(param);
-            ReporteFecha= param;
+       
+       
+        var newparam = { fecha: [formattedDate($scope.fecha)], estatus: [$scope.estatus], nombreCliente: [param], tipo: [param], cedulaBenef:[param] }
+        if (tipo == 'fecha') {
+            ReporteFecha = param;
+            newparam = { fecha: [formattedDate(param)]}
         }
+          
+          
+         
 
-        $scope.remesasx = $filter("filter")(datax.remesas, param);
+          $scope.remesasx = $filter("filterMultiple")(datax.remesas, newparam);
         $scope.calcularTotals();
     }
 
+   
    
     
     $scope.setRemesa = function (event, remesa) {
@@ -737,6 +747,7 @@
    
     $scope.$watch('estatus', function (estatus) {
         $scope.filtrar(estatus);
+        $scope.filtro = "";
     });
    
     $scope.add = function () {
@@ -775,6 +786,11 @@
         $scope.usuarios = data;
 
     });
+
+    $scope.AdminUser = function (id) {
+
+        $state.go("AdminUser", {id});
+    }
     Request.make("POST", "/admin/getAllRoles/").then(function (data) {
 
         $scope.roles = data;
@@ -832,6 +848,11 @@
         });
         
     }
+}).controller("adminUserController", function ($scope, $sce, $location, Request, Notify, $state,user) {
+   // var fechita2 = new Date();
+   // $scope.fechaAdmin = formattedDateG(fechita2);
+   
+
 
 }).controller("adminCambioController", function ($scope, $sce, $location, Request, Notify, $state) {
 

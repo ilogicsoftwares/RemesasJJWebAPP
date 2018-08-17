@@ -1,0 +1,42 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{
+    Layout = null;
+}
+
+<body>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div class="w3-animate-right">
+        <div class="w3-container w3-black">
+            <h2 class="text-center">FORMULARIO DE ENVIO</h2>
+        </div>
+
+        <form name="Form1" class="w3-container">
+            <p>
+                <h2>Banco del Beneficiario</h2>
+                <select class="w3-select" name="option" ng-model="remesa.remex.bancoBenef" ng-options="item.id as item.nombre for item in bancos track by item.id" required>
+                    <option ng-selected="remesa.remex.bancoBenef==item.id" value="null" disabled selected>Selecciona un Banco</option>
+
+                </select>
+            </p>
+            <p>
+                <label>Numero de Cuenta</label>
+                <input maxlength="20" pattern=".{20,20}" class="w3-input w3-animate-input" type="text" number-mask="" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="remesa.remex.cuentaBenef" required title="Numero de cuenta de 20 digitos">
+            </p>
+            <p id="2" class="form-group">
+                <label>Tipo de Cuenta</label>
+                <input id="male" class="w3-radio" type="radio" name="cuentaBenefType" ng-model="remesa.remex.cuentaBenefType" value="1" required>
+                <label>Ahorro</label>
+                <input id="male" class="w3-radio" type="radio" name="cuentaBenefType" ng-model="remesa.remex.cuentaBenefType" value="2" checked>
+                <label>Corriente</label>
+            </p>
+            <p id="1" class="form-group">
+                <button style="color:white;font-weight:bolder" ng-click="gotoForm('FormOffice3')" class="btn w3-black pull-right">Siguente</button>
+                <button style="color:white;font-weight:bolder" ng-click="gotoForm('FormOffice')" class="btn w3-black pull-right  w3-margin-right">Anterior</button>
+            </p>
+        </form>
+    </div>
+</body>

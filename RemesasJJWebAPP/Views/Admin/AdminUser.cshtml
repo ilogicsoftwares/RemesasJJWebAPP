@@ -1,0 +1,89 @@
+﻿@{
+    Layout = null;
+}
+<div style="max-height:600px;overflow-y:auto;">
+    <h1>Administrar Usuarios: {{user.id}} - {{user.nombre}}</h1>
+
+    <div name="form1" class="col-sm-12">
+
+
+    </div>
+</div>
+<div >
+   
+        <div style="display:grid" >
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <label for="inputFilter" class="col-form-label">Buscar:</label>
+                        <input class="form-control" type="text" ng-change="filtrar(filtro)" ng-model="filtro" id="inputFilter" />
+
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="input-group">
+                        <label for="inputFilter" class="col-form-label">Fecha:</label>
+                        <input class="form-control" type="date" value="{{fechaVal}}" ng-change="filtrar(fecha,'fecha')" ng-model="fecha" id="inputFilter" />
+
+                    </div>
+                </div>
+                <div class="col-sm-6" style="margin-top:28px;">
+                    <a class="btn btn-default btn-sm pull-right" ng-click="show('id05')" value="+" style="font-weight:bold;font-size:medium" title="Imprimir">
+                        <span class="glyphicon glyphicon-print"></span>
+                    </a>
+                    <div class="form-group pull-right" style="margin-right:10px;margin-top:5px">
+                        <label class="radio-inline"><input type="radio" ng-model="estatus" value="" name="optradio">Todas</label>
+                        <label class="radio-inline"><input type="radio" ng-model="estatus" value="Recibida" name="optradio">Recibidas</label>
+                        <label class="radio-inline"><input type="radio" ng-model="estatus" value="Procesada" name="optradio">Procesadas</label>
+                        <label class="radio-inline"><input type="radio" ng-model="estatus" value="Anulada" name="optradio">Anuladas</label>
+                    </div>
+                </div>
+            </div>
+            <div style="max-height:300px;overflow-y:auto;overflow-x:hidden">
+                <table class="table table-striped table-bordered" style="font-size:small">
+                    <tr>
+                        <th>ID</th>
+                        <th>FECHA</th>
+                        <th>CLIENTE</th>
+                        <th>MONTO DEPOSITO</th>
+                        <th>BENEFICIARIO</th>
+                        <th>CEDULA</th>
+                        <th>TOTAL ENVIO</th>
+                        <th>NUMERO DE CUENTA</th>
+                        <th>BANCO</th>
+                        <th>TIPO DE ENVIO</th>
+                        <th>ESTATUS</th>
+                    <tbody>
+                        <tr dir-paginate="remesa in remesasx  | itemsPerPage:20">
+
+
+                            <td><a ng-click="editarRemesa(remesa.id)" href="">{{remesa.id}}</a></td>
+                            <td>{{remesa.fecha}}</td>
+                            <td>{{remesa.nombreCliente}}</td>
+                            <td ng-init="$parent.totalito=$parent.totalito+remesa.montoDepositoN" class="text-right">{{remesa.montoDeposito}}</td>
+                            <td>{{remesa.nombreBenef}}</td>
+                            <td>{{remesa.cedulaBenef}}</td>
+                            <td>{{remesa.montoDestino}}</td>
+                            <td>{{remesa.cuentaBenef}}</td>
+                            <td>{{remesa.banco}}</td>
+                            <td>{{remesa.tipo}} </td>
+                            <td ng-show="remesa.estatus=='PROCESADA'"><a style="color:darkseagreen" ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
+                            <td ng-show="remesa.estatus=='RECIBIDA'"><a ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
+                            <td ng-show="remesa.estatus=='ANULADA'"><a style="color:red" ng-click="ProcRemesa(remesa)" href="">{{remesa.estatus}}</a></td>
+                        </tr>
+                    </tbody>
+                                           
+
+                </table>
+               
+                </div>
+            <dir-pagination-controls class="pull-right"></dir-pagination-controls>
+            Resumen: Total Deposito S/:{{sumDepositosSol | currency:'':2}} , Total Deposito $:{{sumDepositosDol| currency:'':2}},Total Envio:Bs.{{sumEnvios | currency:'':2}}
+            </div>
+   
+</div>
+<script>
+        var cambio=@Html.Raw(ViewBag.cambio);
+
+</script>
+

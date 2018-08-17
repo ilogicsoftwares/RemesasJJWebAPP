@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+}
+
+<h1>Actualizar Montos de Cambio</h1>
+<form name="form1" class="col-sm-6">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Fecha:</label>
+        <input ng-model="cambio.fecha" type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>     
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Dolar a Bs.</label>
+        <input ng-model="cambio.bolivares" type="number" class="form-control" id="exampleInputPassword1" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Tasa de Cambio</label>
+        <input ng-model="cambio.cambio1" type="number" class="form-control" id="exampleInputPassword1" required>
+    </div>
+    <div class="form-check">
+        <input ng-model="cambio.estatus" type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Activar</label>
+    </div>
+    <button ng-click="Enviar($event)"  class="btn btn-primary">Submit</button>
+</form>
+<script>
+    var cambio=@Html.Raw(ViewBag.cambio);
+
+</script>
+

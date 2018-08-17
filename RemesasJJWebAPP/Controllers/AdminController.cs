@@ -34,6 +34,12 @@ namespace RemesasJJWebAPP.Controllers
         }
         [Authorize]
         [CustAuthFilter]
+        public ActionResult AdminUser()
+        {
+            return View();
+        }
+        [Authorize]
+        [CustAuthFilter]
         public ActionResult Roles()
         {
             return View();

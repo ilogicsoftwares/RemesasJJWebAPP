@@ -352,6 +352,7 @@
     <Content Include="Views\Admin\usuarios.cshtml" />
     <Content Include="Views\Admin\Roles.cshtml" />
     <Content Include="Views\Secure\notAuth.cshtml" />
+    <Content Include="Views\Admin\AdminUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

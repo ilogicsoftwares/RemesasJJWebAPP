@@ -70,6 +70,7 @@
                     <th>NOMBRE COMPLETO</th>
                     <th>ROL</th>
                     <th>ELIMINAR</th>
+                    <th>ADMINISTRAR</th>
                 </tr>
                 <tr ng-repeat="item in usuarios">
                     <td ng-click="EditUser(item.id)"><a href="">{{item.id}}</a></td>
@@ -78,6 +79,7 @@
                     <td>{{item.nombrex}}</td>
                     <td>{{item.rolName}}</td>
                     <td><a href="" ng-click="EliminarUsuario(item)">Eliminar</a></td>
+                    <td><a href="" ng-click="AdminUser(item.id)">Administrar</a></td>
                 </tr>
 
             </table>
