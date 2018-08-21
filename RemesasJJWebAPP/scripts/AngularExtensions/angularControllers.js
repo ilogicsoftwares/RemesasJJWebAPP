@@ -557,17 +557,12 @@
         $scope.sumEnvios = suma($scope.remesasx, "montoDestinoN");
     }
     $scope.filtrar = function (param, tipo) {
-       
-       
-        var newparam = { fecha: [formattedDate($scope.fecha)], estatus: [$scope.estatus], nombreCliente: [param], tipo: [param], cedulaBenef: [param], banco: [param], procesada: [$scope.estatus] }
+        var newparam = { fecha: [formattedDate($scope.fecha)], id: [param], estatus: [$scope.estatus], nombreCliente: [param], tipo: [param], cedulaBenef: [param], banco: [param],  procesada: [$scope.estatus] }
         if (tipo == 'fecha') {
             ReporteFecha = param;
             newparam = { fecha: [formattedDate(param)]}
         }
-          
-          
-         
-
+    
           $scope.remesasx = $filter("filterMultiple")(datax.remesas, newparam);
         $scope.calcularTotals();
     }
