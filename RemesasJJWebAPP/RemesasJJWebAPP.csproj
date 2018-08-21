@@ -190,12 +190,9 @@
     <Content Include="scripts\AngularExtensions\dirPagination.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <None Include="Properties\PublishProfiles\Default Settings %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\Default Settings.pubxml" />
-    <None Include="Properties\PublishProfiles\file.pubxml" />
-    <None Include="Properties\PublishProfiles\remesasjj.pubxml" />
     <None Include="Properties\PublishProfiles\remesasjjAWS.pubxml" />
-    <None Include="Properties\PublishProfiles\remesasjjDeploy.pubxml" />
+    <None Include="Properties\PublishProfiles\RemesasWEB.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -353,6 +350,7 @@
     <Content Include="Views\Admin\Roles.cshtml" />
     <Content Include="Views\Secure\notAuth.cshtml" />
     <Content Include="Views\Admin\AdminUser.cshtml" />
+    <Content Include="Views\Admin\HomesAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

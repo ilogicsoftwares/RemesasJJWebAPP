@@ -24,15 +24,125 @@
               }
           }
       }).state({
+          name: "Bancos",
+          url: "/admin/Bancos",
+          templateUrl: "/admin/bancos",
+          controller: "adminBancosController",
+          resolve: {
+              clientes: function () {
+                  $("#wrapper").toggleClass("toggled");
+              },
+              cuentas: function (Request) {
+                  return Request.make("POST", "/Admin/getcuentas/");
+              },
+              monedas: function (Request) {
+                  return Request.make("POST", "/Admin/getmonedas/");
+              }
+          }
+      }).state({
           name: "ActRemesa",
-          url: "/remesas/Remesas",
+          url: "/remesas/Remesas/:id",
           templateUrl: "/remesas/index",
           controller: "adminRemesaController",
           resolve: {
               clientes: function () {
                   $("#wrapper").toggleClass("toggled");
+              }, user: function ($stateParams, Request) {
+                  return Request.make("POST", "/admin/getuser/", { id: $stateParams.id });
               }
           }
+      }).state({
+          name: "Usuarios",
+          url: "/admin/usuarios",
+          templateUrl: "/admin/usuarios",
+          controller: "adminUsuariosController",
+          resolve: {
+              clientes: function () {
+                  $("#wrapper").toggleClass("toggled");
+              }
+          }
+      }).state({
+          name: "Roles",
+          url: "/admin/roles",
+          templateUrl: "/admin/roles",
+          controller: "adminRolesController",
+          resolve: {
+              clientes: function () {
+                  $("#wrapper").toggleClass("toggled");
+              }
+          }
+      }).state({
+          name: "AdminUser",
+          url: "/admin/adminuser/:id",
+          templateUrl: "/admin/adminuser",
+          controller: "adminRemesaController",
+          resolve: {
+              user: function ($stateParams,Request) {
+                  return Request.make("POST", "/admin/getuser/", { id: $stateParams.id });
+              }
+          }
+      }).state({
+          name: "FormOffice",
+          templateUrl: "/formOffice/index",
+          controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+                
+                  return Request.make("POST", "/form/Bancos/");
+              }, closex: function () {
+
+
+                  $("#wrapper").toggleClass("toggled");
+              }
+          }
+      }).state({
+          name: "EditarRemesa",
+          templateUrl: "/formOffice/EditarRemesa",
+          controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+
+                  return Request.make("POST", "/form/Bancos/");
+              }, closex: function () {
+
+
+                  $("#wrapper").toggleClass("toggled");
+              }
+          }
+      }).state({
+          name: "FormOffice2",
+          templateUrl: "/formOffice/form2",
+          controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+                  return Request.make("POST", "/form/Bancos/");
+              }
+          }
+      }).state({
+          name: "FormOffice3",
+          templateUrl: "/formOffice/form3",
+          controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+                  return Request.make("POST", "/form/Bancos/");
+              }
+          }
+      }).state({
+          name: "FormOffice4",
+          templateUrl: "/formOffice/form4",
+          controller: "FormController",
+          resolve: {
+              bancos: function (Request) {
+                  return Request.make("POST", "/form/Bancos/");
+              }
+          }
+      }).state({
+          name: "PrintRemesa",
+          url: "/form/remesasReport/:id",
+          templateUrl:function(stateParams) {
+             return "/formOffice/remesasReport/"+stateParams.id;
+          } ,
+          controller: "remesasReportController"
       }).state({
           name: "Form",
           templateUrl: "/form/index",

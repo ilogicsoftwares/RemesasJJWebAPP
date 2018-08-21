@@ -4,7 +4,7 @@
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\user\\documents\\visual\ studio\ 2015\\Projects\\RemesasJJWebAPP\\RemesasJJWebAPP\\obj\\Release\\Package\\PackageTmp$" />
     <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\user\\documents\\visual\ studio\ 2015\\Projects\\RemesasJJWebAPP\\RemesasJJWebAPP\\obj\\Release\\Package\\PackageTmp$" />
   </parameter>
-  <parameter name="remesasEntities-Web.config Connection String" description="remesasEntities Connection String used in web.config by the application to access the database." value="metadata=res://*/remesas.csdl|res://*/remesas.ssdl|res://*/remesas.msl;provider=MySql.Data.MySqlClient;provider connection string=&quot;server=ec2-18-188-128-254.us-east-2.compute.amazonaws.com;user id=root;password=693693123456;persistsecurityinfo=True;database=remesas&quot;" tags="SqlConnectionString">
+  <parameter name="remesasEntities-Web.config Connection String" description="" value="metadata=res://*/remesas.csdl|res://*/remesas.ssdl|res://*/remesas.msl;provider=MySql.Data.MySqlClient;provider connection string=&quot;server=localhost;user id=root;password=693693123456;persistsecurityinfo=True;database=remesas&quot;" tags="">
     <parameterEntry kind="XmlFile" scope="C:\\Users\\user\\documents\\visual\ studio\ 2015\\Projects\\RemesasJJWebAPP\\RemesasJJWebAPP\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='remesasEntities']/@connectionString" />
   </parameter>
 </parameters>

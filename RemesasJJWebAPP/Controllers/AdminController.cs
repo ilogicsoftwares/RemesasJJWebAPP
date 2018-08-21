@@ -44,7 +44,10 @@ namespace RemesasJJWebAPP.Controllers
         {
             return View();
         }
-
+        private users GetCurrentUser()
+        {
+           return usuariosx.GetByID(int.Parse(HttpContext.User.Identity.Name));
+        }
         // GET: Admin/Details/5
         
         [Authorize]
@@ -53,7 +56,7 @@ namespace RemesasJJWebAPP.Controllers
                
             if (HttpContext.User != null)
             {
-                var currentUser = usuariosx.GetByID(int.Parse(HttpContext.User.Identity.Name));
+                var currentUser = GetCurrentUser();
                 Session["currentUserName"] = currentUser.nombre;
                 
             }else
@@ -476,7 +479,9 @@ namespace RemesasJJWebAPP.Controllers
 
         public ActionResult Homes()
         {
-                       
+            var user = GetCurrentUser();
+           
+                   
             return View();
             
         }

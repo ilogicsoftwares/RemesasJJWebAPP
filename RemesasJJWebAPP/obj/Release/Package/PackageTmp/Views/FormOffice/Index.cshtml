@@ -1,0 +1,60 @@
+﻿
+@{
+    Layout = null;
+}
+
+<body>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <div class="w3-container w3-black">
+        <h2 class="text-center">FORMULARIO DE ENVIO</h2>
+    </div>
+
+    <form name="Form1" class="w3-container">
+        <h2>Datos del Benificiario</h2>
+        <p>
+            <label>Nombre Completo</label>
+            <input id="nombreComp" class="w3-input w3-animate-input" type="text" ng-model="remesa.remex.nombreBenef" required>
+        </p>
+        <p>
+            <label>Cedula</label>
+            <input id="cedula" class="w3-input w3-animate-input" type="text" pattern=".{7,}" maxlength="10"  required title="7 caracteres minimos" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="remesa.remex.cedulaBenef" required>
+        </p>
+        <p id="1" class="form-group">
+            <label>Tipo de Cedula: </label>
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.remex.cedulaBenefType" value=1  required>
+            <label>V</label>
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.remex.cedulaBenefType" value=2 >
+            <label>P</label>
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType"  ng-model="remesa.remex.cedulaBenefType" value=3 >
+            <label>E</label>
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.remex.cedulaBenefType" value=4>
+            <label>J</label>
+            <input id="cedulaBenefType" class="w3-radio" type="radio" name="cedulaBenefType" ng-model="remesa.remex.cedulaBenefType" value=5>
+            <label>G</label>
+        </p>
+        <p id="1" class="form-group">
+            <button style="color:white;font-weight:bolder"  ng-click="gotoForm('FormOffice2')" class="btn w3-black pull-right">Siguente</button>
+           
+        </p>
+        
+
+     
+    </form>
+    <script>
+        document.getElementById('montox').addEventListener('keydown', function (e) {
+            if (e.which === 38 || e.which === 40) {
+                e.preventDefault();
+            }
+        });
+
+    </script>
+
+    <style>
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+    </style>
+</body>

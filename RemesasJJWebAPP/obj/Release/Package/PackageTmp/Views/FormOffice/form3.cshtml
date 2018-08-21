@@ -10,17 +10,21 @@
 <body>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <div class="w3-animate-right">
-        <div class="w3-container w3-green">
+        <div class="w3-container w3-black">
             <h2 class="text-center">FORMULARIO DE ENVIO</h2>
         </div>
 
         <form name="Form1" class="w3-container">
             <p id="3" class="form-group">
                 <h2>Forma de Pago</h2><br />
+                <input id="male" class="w3-radio" type="radio" name="remesaType" ng-model="remesa.remex.remesaType" value="1" ng-click="showForm(false)" required>
+                <label>Oficina</label>
                 <input id="male" class="w3-radio" type="radio" name="remesaType" ng-model="remesa.remex.remesaType" value="2" ng-click="showForm(true)" checked>
                 <label>Depósito</label>
                 <input id="male" class="w3-radio" type="radio" name="remesaType" ng-model="remesa.remex.remesaType" value="3" ng-click="showForm(true)">
-                <label>Transferencia</label>x|
+                <label>Transferencia</label>
+         
+                
             </p>
             <div ng-show="depoTran">
                 <p id="4" class="form-group">
@@ -44,8 +48,8 @@
                 <h2 class="text-right">Total Bs.{{remesa.remex.montoDestino | currency: '': 2}}</h2>
             </p>
             <p id="1" class="form-group">
-                <button style="color:white;font-weight:bolder" ng-click="gotoForm('Form4')" class="btn btn-success pull-right">Siguente</button>
-                <button style="color:white;font-weight:bolder" ng-click="gotoForm('Form2')" class="btn btn-success pull-right w3-margin-right">Anterior</button>
+                <button style="color:white;font-weight:bolder" ng-click="gotoForm('FormOffice4')" class="btn w3-black pull-right">Siguente</button>
+                <button style="color:white;font-weight:bolder" ng-click="gotoForm('FormOffice2')" class="btn w3-black pull-right w3-margin-right">Anterior</button>
             </p>
         </form>
         </div>

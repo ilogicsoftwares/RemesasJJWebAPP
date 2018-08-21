@@ -12,15 +12,20 @@
         })
 .then(function (response) {
     if (response.data.error) {
-
-        Notify.error(response.data.errorMsg);
+        if (response.data.errorMsg != "" && response.data.errorMsg != null)
+        {
+            window.alert(response.data.errorMsg);
+        } else {
+            window.alert("Error al procesar la solicitud...");
+        }
+      
     }
  
     def.resolve(response.data);
 },
 function (response) { // optional
    
-    Notify.error("Error de conexión");
+    window.alert("Error de conexión");
     def.reject(response);
 });
 
