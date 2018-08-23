@@ -214,7 +214,10 @@ namespace RemesasJJWebAPP.Controllers
 
 
                 Bancosx.context.roleacess.RemoveRange(Bancosx.context.roleacess.Where(x => x.roleid == id));
+                Bancosx.context.Entry(rol).State = System.Data.Entity.EntityState.Modified;
                 Bancosx.context.SaveChanges();
+               
+                
                 foreach (var item in accesos)
                 {
                     if (item.active == 1)
@@ -480,8 +483,11 @@ namespace RemesasJJWebAPP.Controllers
         public ActionResult Homes()
         {
             var user = GetCurrentUser();
-           
-                   
+            var rolisUser = user.roles.esAdmin;
+            if (rolisUser == 1)
+            {
+                return View(@"~\Views\Admin\HomesAdmin.cshtml");
+            }       
             return View();
             
         }
