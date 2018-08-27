@@ -822,7 +822,7 @@
             return;
         }
 
-        if (!scope.userKeyRepeat && $scope.btnEstatus=="Guardar") {
+        if (($scope.user.userKeyRepeat!=$scope.user.clave) && $scope.btnEstatus=="Guardar") {
             window.alert("Las Claves no coinciden");
             return;
         }

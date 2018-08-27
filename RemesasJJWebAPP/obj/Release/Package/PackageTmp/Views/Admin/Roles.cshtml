@@ -3,9 +3,9 @@
     Layout = null;
 }
 <div>
-    <h1>Roles</h1>
+    
     <form name="form1" class="col-sm-6">
-
+        <h1>Roles</h1>
         <div class="form-group">
             <label for="exampleInputPassword1">Rol</label>
             <input ng-model="Rolex.newRole" type="text" class="form-control" id="RoleName" required>
@@ -26,6 +26,17 @@
         <button ng-click="Actualizar()" class="btn btn-secondary">Cancelar</button>
 
     </form>
+    <div class="col-sm-6">
+        <h1>Detalles</h1>
+        <label>Configuracion Extra</label>
+        <div class="form-group">
+            <div class="checkbox" >
+                <label><input type="checkbox" ng-model="Rolex.esAdmin" ng-true-value="1">Es rol Administrador</label>
+            </div>
+
+        </div>
+        
+    </div>
 </div>
 <div class="w3-container w3-margin-top">
     <div style="max-height:300px;overflow-y:scroll;">
