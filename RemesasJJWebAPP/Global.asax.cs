@@ -74,6 +74,7 @@ namespace RemesasJJWebAPP
         {
             return new JsonNetResult
             {
+                MaxJsonLength = Int32.MaxValue,
                 Data = data,
                 ContentType = contentType,
                 ContentEncoding = contentEncoding,
@@ -89,6 +90,7 @@ namespace RemesasJJWebAPP
             {
                 PreserveReferencesHandling = PreserveReferencesHandling.Objects,
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                
             };
         }
         public JsonSerializerSettings Settings { get; private set; }

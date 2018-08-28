@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="remesasEntities-Web.config Connection String" description="remesasEntities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/remesas.csdl|res://*/remesas.ssdl|res://*/remesas.msl;provider=MySql.Data.MySqlClient;provider connection string=&quot;server=www.remesasjj.com;user id=root;password=693693123456;persistsecurityinfo=True;database=remesas&quot;" tags="SqlConnectionString">
-    <parameterEntry kind="XmlFile" scope="C:\\Users\\user\\documents\\visual\ studio\ 2015\\Projects\\RemesasJJWebAPP\\RemesasJJWebAPP\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='remesasEntities']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\RemesasJJWebAPP\\RemesasJJWebAPP\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='remesasEntities']/@connectionString" />
   </parameter>
 </parameters>

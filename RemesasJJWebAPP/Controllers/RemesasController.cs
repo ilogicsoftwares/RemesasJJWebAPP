@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace RemesasJJWebAPP.Controllers
 {
-    public class RemesasController : Controller
+    public class RemesasController : BaseController
     {
         // GET: Remesas
         Remesa remesax = new Remesa();
