@@ -15,7 +15,7 @@ namespace RemesasJJWebAPP.Controllers
         // GET: Remesas
         Remesa remesax = new Remesa();
         Bancos banco = new Bancos();
-
+        Usuarios userx = new Usuarios();
 
         [Authorize]
         [CustAuthFilter]
@@ -28,8 +28,18 @@ namespace RemesasJJWebAPP.Controllers
         [HttpPost]
         public JsonResult GetAll(int? id)
         {
+            IEnumerable<remesas> remesas;
+            var userRolAfiliado = GetCurrentUser().roles.Afiliado;
 
-            var remesas =id==null || id==0 ? remesax.GetAll(): remesax.GetAll().Where(x=>x.procesadaPor==id || x.CreadaPor==id);
+            if (userRolAfiliado == 1)
+            {
+                remesas = remesax.GetAll().Where(x => x.procesadaPor == id || x.CreadaPor == id || x.editadaPor==id || x.AnuladaPor==id);
+            }else
+            {
+                remesas = id == null || id == 0 ? remesax.GetAll() : remesax.GetAll().Where(x => x.procesadaPor == id || x.CreadaPor == id);
+            }
+
+            
 
             var remex = remesas.ToList().Select(x => new {
                 x.id,
@@ -70,7 +80,10 @@ namespace RemesasJJWebAPP.Controllers
             return Json(remesax.GetByID(id));
 
         }
-
+        private users GetCurrentUser()
+        {
+            return userx.GetByID(int.Parse(HttpContext.User.Identity.Name));
+        }
         // GET: Remesas/Create
         public JsonResult CheckSerial(string ticketId)
         {
