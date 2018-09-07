@@ -85,6 +85,6 @@ C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWeb
 C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Webpages.Razor.xml
 C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Helpers.xml
 C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\bin\System.Web.Mvc.xml
-C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\obj\Debug\RemesasJJWebAPP.csprojResolveAssemblyReference.cache
 C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\obj\Debug\RemesasJJWebAPP.dll
 C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\obj\Debug\RemesasJJWebAPP.pdb
+C:\Users\user\documents\visual studio 2015\Projects\RemesasJJWebAPP\RemesasJJWebAPP\obj\Debug\RemesasJJWebAPP.csprojResolveAssemblyReference.cache

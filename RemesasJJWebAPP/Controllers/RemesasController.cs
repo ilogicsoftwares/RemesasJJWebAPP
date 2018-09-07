@@ -30,10 +30,10 @@ namespace RemesasJJWebAPP.Controllers
         {
             IEnumerable<remesas> remesas;
             var userRolAfiliado = GetCurrentUser().roles.Afiliado;
-
+            var currentid = GetCurrentUser().id;
             if (userRolAfiliado == 1)
             {
-                remesas = remesax.GetAll().Where(x => x.procesadaPor == id || x.CreadaPor == id || x.editadaPor==id || x.AnuladaPor==id);
+                remesas = remesax.GetAll().Where(x => x.procesadaPor == currentid || x.CreadaPor == currentid || x.editadaPor== currentid || x.AnuladaPor== currentid);
             }else
             {
                 remesas = id == null || id == 0 ? remesax.GetAll() : remesax.GetAll().Where(x => x.procesadaPor == id || x.CreadaPor == id);
@@ -108,6 +108,11 @@ namespace RemesasJJWebAPP.Controllers
                 cuenta=x.cuentaNumero
             });
             return Json(bancos);
+        } 
+        public JsonResult GetRemesa(int id)
+        {
+            var remesa = remesax.GetByID(id);
+            return Json(remesa);
         }
         public JsonResult BancosTrans()
         {

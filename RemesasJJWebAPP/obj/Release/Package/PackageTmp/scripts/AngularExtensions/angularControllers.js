@@ -109,14 +109,15 @@
 }).controller("adminRolesController", function ($scope, $sce, $location, Request, Notify, $state) {
     $scope.btnEstatus = "Guardar";
     $scope.accesos = {};
-    $scope.Rolex = {newRole:"", id:null,esAdmin:0};
+    $scope.Rolex = {newRole:"", id:null,esAdmin:0,Afiliado:0};
     $scope.cancelRoles = function () {
        $scope.Rolex.newRole = "";
     }
     $scope.Actualizar = function () {
-        $scope.Rolex.newRole = "";
+      
         $scope.Rolex.id = null;
         $scope.Rolex.esAdmin = 0;
+        $scope.Rolex.Afiliado = 0;
         $scope.btnEstatus = "Guardar";
         Request.make("POST", "/admin/GetAccesos/").then(function (data) {
             $scope.accesos = data;
@@ -139,6 +140,7 @@
             $scope.Rolex.newRole = data.name;
             $scope.Rolex.id = id;
             $scope.Rolex.esAdmin = data.esAdmin;
+            $scope.Rolex.Afiliado = data.Afiliado;
             Request.make("POST", "/admin/GetUserAcess/", {id:id}).then(function (data) {
                 var usuarioAc = data;
 
@@ -165,7 +167,7 @@
         if (!$scope.form1.$valid)
             return;
         event.preventDefault();
-        Request.make("POST", "/admin/saveroles/", { accesos: $scope.accesos, rol: { name: $scope.Rolex.newRole, esAdmin: $scope.Rolex.esAdmin, id: $scope.Rolex.id }, id: $scope.Rolex.id }).then(function () {
+        Request.make("POST", "/admin/saveroles/", { accesos: $scope.accesos, rol: { name: $scope.Rolex.newRole, esAdmin: $scope.Rolex.esAdmin, id: $scope.Rolex.id, Afiliado: $scope.Rolex.Afiliado }, id: $scope.Rolex.id }).then(function () {
             if ($scope.Rolex.id == null) {
                 window.alert("Se han Guardado los datos");
             } else {

@@ -48,7 +48,7 @@ namespace RemesasJJWebAPP.Controllers
                   string fileName;
                   string ext = Path.GetExtension(File.FileName);
 
-                if (ext == ".gif" || ext == ".jpg" || ext == ".jpeg" || ext == ".png")
+                if (ext == ".gif" || ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext==".jpe")
                 {
                     imageAcept = true;
 
@@ -212,6 +212,32 @@ namespace RemesasJJWebAPP.Controllers
 
 
             return Json(response.StatusCode.ToString());
+        }
+        [HttpPost]
+        public JsonResult SendMailService (string subjectx, string fromF,string key, string fromName, string toF, string toName, string content)
+        {
+
+            var existe = remex.context.sendgrid.Where(x => x.usuarioEmail == fromF && x.key == key);
+
+            if (existe.Count() == 0)
+            {
+                return Json(new { error=true,message="No Autorizado",response=false});
+
+            }
+            
+            //StreamReader reader = new StreamReader("~/Content/m.txt");
+            var apiKey = sendMail.GetKey();
+            var client = new SendGridClient(apiKey);
+            var from = new EmailAddress(fromF, fromName);
+
+            var subject = subjectx;
+            var to = new EmailAddress(toF, toName);
+            var htmlContent = content;
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", content);
+            client.SendEmailAsync(msg).Wait();
+
+            return Json(new { error = false, message = "Correo enviado", response = client.SendEmailAsync(msg).Result });
+            
         }
         // POST: Form/Create
         [HttpPost]

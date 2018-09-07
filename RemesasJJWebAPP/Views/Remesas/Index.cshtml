@@ -201,6 +201,24 @@
     </div>
 
 </div>
+
+<div id="id06" class="w3-modal">
+    <div class="w3-modal-content w3-container" style="width:800px">
+        <div>
+            <span ng-click="close('id06')" class="w3-button w3-display-topright">&times;</span>
+
+            <h3>Adminitración:</h3>
+            <label>Creado Por:<strong></strong></label>
+            <label>Procesado Por:<strong></strong></label>
+            <label>Editado Por:<strong></strong></label>
+            <label>Anulado Por:<strong></strong></label>
+
+        </div>
+        <button ng-click="modal.closeModal('id06')" class="w3-btn w3-margin-top w3-border  w3-border-blue w3-round w3-tiny w3-right">Cancelar</button>
+        <button ng-click="GeneralReport()" class="w3-btn w3-margin-top w3-margin-right w3-border w3-border-red w3-round w3-tiny w3-right">Procesar</button>
+    </div>
+
+</div>
 <style>
     .loader {
         border: 5px solid #f3f3f3; /* Light grey */
